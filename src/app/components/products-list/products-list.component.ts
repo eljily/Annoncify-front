@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
-import { Product } from '../../shared/model/Product';
-import { Image } from '../../shared/model/Image';
 import { NgFor } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Product } from '../../model/Product';
+import { Image } from '../../model/Image';
 
 @Component({
   selector: 'app-products-list',
