@@ -23,3 +23,9 @@
 .flex-column {
     flex-direction: column;
 }
+
+.fixed-size-image {
+    width: 150px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+    object-fit: cover; /* or object-fit: contain; depending on your preference */
+}
