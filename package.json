@@ -23,6 +23,7 @@
     "@angular/ssr": "^17.2.3",
     "express": "^4.18.2",
     "ngx-pagination": "^6.0.3",
+    "primeicons": "^6.0.1",
     "primeng": "^17.10.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

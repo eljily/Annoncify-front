@@ -1,68 +1,71 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
 import { Product } from '../../model/Product';
 import { Image } from '../../model/Image';
-import { NgFor } from '@angular/common';
 import { ProductsService } from '../../services/products.service';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [ButtonModule, DataViewModule, PaginatorModule,NgFor],
+  imports: [ButtonModule, DataViewModule, PaginatorModule,RouterModule,NgFor],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
+  constructor(
+    private productService: ProductsService,
+     private router: Router,
+     private route : ActivatedRoute
+     ) {}
 
-  constructor(private productService: ProductsService) {}
-  
   products: Product[] = [];
   pagedProducts: Product[] = [];
   currentPage = 1; // Use a separate property for the current page
   rows = 14;
-  totalProducts = 0; 
+  totalProducts = 0;
+  categoryId: number =0;
 
   ngOnInit() {
-    // Assuming you have a method to fetch products from a service or API
-    this.fetchProducts();
+    this.route.paramMap.subscribe(params => {
+      // Extract categoryId from route parameters
+      this.categoryId = Number(params.get('categoryId'));
+      // Call fetchProducts with the extracted categoryId
+      this.fetchProducts(this.categoryId);
+    });
   }
 
-  fetchProducts() {
-    // Replace this with your actual data fetching logic
-    // For demonstration purposes, we'll create a sample product
-    const sampleProduct: Product = {
-      id: 1,
-      name: 'Iphone 15 Pro Max',
-      price: 100,
-      description: 'This Iphone is one of the best iPhones in the world. It used to be and it will always be the best.',
-      createDate: new Date(),
-      updateDate: new Date(),
-      images: [
-        { imageUrl: 'https://firebasestorage.googleapis.com/v0/b/itkann-app.appspot.com/o/b634cce9-5c07-4926-825d-e73c74e19329.jpg?alt=media' } as Image
-      ],
-      category: {
-        name: 'Sample Category',
-        id: 1
-      }
-    };
+  navigateToProductDetails(productId: number) {
+    this.router.navigate(['/product-details', productId]);
+  }
 
-    // this.products = Array(70).fill(sampleProduct);
-    this.productService.getProducts().subscribe(
-      (response: any) => {
-        // Assuming your API response structure
-        this.products = response.data;
-        this.totalProducts = response.meta.total;
-        this.updatePagedProducts();
-        console.log(this.products);
-      },
-      error => {
-        console.error('Error fetching products:', error);
-      }
-    );
-    this.updatePagedProducts();
-    console.log(this.products);
+  fetchProducts(categoryId: number) {
+    if (categoryId === 0) {
+      this.productService.getAllProducts().subscribe(
+        (response: any) => {
+          this.products = response.data;
+          this.totalProducts = response.meta.total;
+          this.updatePagedProducts();
+        },
+        error => {
+          console.error('Error fetching products:', error);
+        }
+      );
+    } else {
+      this.productService.getProductsByCategoryId(categoryId).subscribe(
+        (response: any) => {
+          this.products = response.data;
+          this.totalProducts = response.meta.total;
+          this.updatePagedProducts();
+        },
+        error => {
+          console.error('Error fetching products by category:', error);
+        }
+      );
+    }
   }
 
   updatePagedProducts() {

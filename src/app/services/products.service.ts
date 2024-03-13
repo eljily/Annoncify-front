@@ -11,7 +11,14 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
-  public getProducts() :Observable<any> {
+  public getAllProducts() :Observable<any> {
     return this.http.get(`${this.api}/products`);
+  }
+  getProductDetails(productId: number): Observable<any> {
+    return this.http.get(`${this.api}/products/${productId}`);
+  }
+
+  getProductsByCategoryId(categoryId:number): Observable<any>{
+   return this.http.get(`${this.api}/products/productsByCategorieId/${categoryId}`);
   }
 }
