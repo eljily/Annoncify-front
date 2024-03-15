@@ -23,7 +23,8 @@ export class AppComponent {
     'Telephones': 'pi pi-mobile',
     'PC': 'pi pi-desktop',
     'Tablets': 'pi pi-tablet',
-    'Gaming': 'pi pi-gamepad'
+    'Gaming': 'pi pi-game',
+    'Home':'pi pi-home'
   };
 
   ngOnInit() {
@@ -32,7 +33,14 @@ export class AppComponent {
     this.categoryService.getAllCategories().subscribe(
       (response: any) => {
         this.categories = response;
-  
+
+        // Check if a category with the name "Home" already exists
+      const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
+      if (homeCategoryIndex === -1) {
+        // Add the Home category manually only if it doesn't already exist
+        const homeCategory: Category = { id: 0, name: 'Home' };
+        this.categories.unshift(homeCategory);
+      }
         // Populate menu items dynamically based on categories and icon mappings
         this.items = this.categories.map(category => ({
           label: category.name,
