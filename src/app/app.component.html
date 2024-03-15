@@ -1,3 +1,11 @@
-<p-tabMenu [model]="items" class="navbar"></p-tabMenu>
+<div class="container">
+    <!-- Your existing menu -->
+    <p-tabMenu [model]="items"></p-tabMenu>
+    
+    <!-- Profile button -->
+    <button class="profile-button" (click)="redirectToProfile()">
+      <i class="pi pi-user"></i>  Profile
+    </button>
+  </div>
 <router-outlet>
 </router-outlet>

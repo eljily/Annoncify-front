@@ -14,6 +14,7 @@ import { Category } from './model/Category';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+
   public constructor(private categoryService:CategoryService,private router:Router){}
   title = 'annoncify_front';
   items: MenuItem[] = [];
@@ -57,4 +58,8 @@ export class AppComponent {
   navigateToCategory(categoryId: number) {
     this.router.navigate(['/products', categoryId]);
   }
+
+  redirectToProfile() {
+    this.router.navigateByUrl('/profile');
+    }
 }

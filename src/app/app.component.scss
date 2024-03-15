@@ -1,0 +1,22 @@
+.container {
+    position: relative;
+  }
+  
+  .profile-button {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-button:hover {
+    background-color: #0056b3;
+  }
