@@ -27,7 +27,7 @@ export class ProductsListComponent implements OnInit {
   currentPage = 1; // Use a separate property for the current page
   rows = 14;
   totalProducts = 0;
-  categoryId: number =0;
+  categoryId!: number ;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -35,6 +35,7 @@ export class ProductsListComponent implements OnInit {
       this.categoryId = Number(params.get('categoryId'));
       // Call fetchProducts with the extracted categoryId
       this.fetchProducts(this.categoryId);
+      console.log("ngOnInit executed!");
     });
   }
 
