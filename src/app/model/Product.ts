@@ -9,5 +9,5 @@ export interface Product {
     createDate: Date;
     updateDate: Date;
     images: Image[];
-    category: Category;
+    // category: Category;
   }
