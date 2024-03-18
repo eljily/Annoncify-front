@@ -1,20 +1,18 @@
 <div class="card">
-    <div class="product-grid">
-      <div class="card" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
-        <div class="grid grid-nogutter">
-          <div class="col-12">
-            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-              <!-- Make the product image clickable -->
-              <div [routerLink]="['/product-details', item.id]">
-                <img class="fixed-size-image shadow-2 block xl:block mx-auto border-round" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'default-image-url'" [alt]="item.name" />
+  <div class="product-grid">
+    <div class="card" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
+      <!-- Make the entire card clickable -->
+      <div class="grid grid-nogutter">
+        <div class="col-12">
+          <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"  [routerLink]="['/product-details', item.id]" >
+            <!-- Make the product image clickable -->
+            <img class="fixed-size-image shadow-2 block xl:block mx-auto border-round" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'default-image-url'" [alt]="item.name" />
+            <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                <div class="text-2xl font-bold text-900">{{ item.name }}</div>
               </div>
-              <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-                  <div class="text-2xl font-bold text-900">{{ item.name }}</div>
-                </div>
-                <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                  <span class="text-2xl font-semibold">{{ item.price + " MRU" }}</span>
-                </div>
+              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+                <span class="text-2xl font-semibold">{{ item.price + " MRU" }}</span>
               </div>
             </div>
           </div>
@@ -22,3 +20,4 @@
       </div>
     </div>
   </div>
+</div>
