@@ -35,13 +35,13 @@ export class ProductsListComponent implements OnInit {
       this.categoryId = Number(params.get('categoryId'));
       // Call fetchProducts with the extracted categoryId
       this.fetchProducts(this.categoryId);
-      console.log("ngOnInit executed!");
+      console.log("ngOnInit executed!")
     });
   }
-
-  navigateToProductDetails(productId: number) {
-    this.router.navigate(['/product-details', productId]);
-  }
+  
+navigateToProductDetails(productId: number) {
+  this.router.navigate(['/products-details', productId]); // Note the corrected path
+}
 
   fetchProducts(categoryId: number) {
     if (categoryId === 0) {
