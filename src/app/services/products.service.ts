@@ -14,11 +14,19 @@ export class ProductsService {
   public getAllProducts() :Observable<any> {
     return this.http.get(`${this.api}/products`);
   }
-  getProductDetails(productId: number): Observable<any> {
-    return this.http.get(`${this.api}/products/${productId}`);
-  }
-
   getProductsByCategoryId(categoryId: number): Observable<any> {
     return this.http.get(`${this.api}/products/productsByCategoryId/${categoryId}`);
+  }
+
+  getAllProductsPaged(page: number = 0, size: number = 11): Observable<any> {
+    return this.http.get(`${this.api}/products?page=${page}&size=${size}`);
+  }
+
+  getAllProductsByCategoryId(categoryId: number, page: number = 0, size: number = 10): Observable<any> {
+    return this.http.get(`${this.api}/products/productsByCategoryId/${categoryId}?page=${page}&size=${size}`);
+  }
+
+  getProductDetails(productId: number): Observable<any> {
+    return this.http.get(`${this.api}/products/${productId}`);
   }
 }

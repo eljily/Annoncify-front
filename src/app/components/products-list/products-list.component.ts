@@ -7,27 +7,27 @@ import { Image } from '../../model/Image';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [ButtonModule, DataViewModule, PaginatorModule,RouterModule,NgFor],
+  imports: [ButtonModule, DataViewModule, PaginatorModule, RouterModule, NgFor],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
-     private router: Router,
-     private route : ActivatedRoute
-     ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  products: Product[] = [];
   pagedProducts: Product[] = [];
   currentPage = 1; // Use a separate property for the current page
   rows = 14;
   totalProducts = 0;
-  categoryId!: number ;
+  categoryId!: number;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -38,45 +38,34 @@ export class ProductsListComponent implements OnInit {
       console.log("ngOnInit executed!")
     });
   }
-  
-navigateToProductDetails(productId: number) {
-  this.router.navigate(['/products-details', productId]); // Note the corrected path
-}
 
-  fetchProducts(categoryId: number) {
-    if (categoryId === 0) {
-      this.productService.getAllProducts().subscribe(
-        (response: any) => {
-          this.products = response.data;
-          this.totalProducts = response.meta.total;
-          this.updatePagedProducts();
-        },
-        error => {
-          console.error('Error fetching products:', error);
-        }
-      );
-    } else {
-      this.productService.getProductsByCategoryId(categoryId).subscribe(
-        (response: any) => {
-          this.products = response.data;
-          this.totalProducts = response.meta.total;
-          this.updatePagedProducts();
-        },
-        error => {
-          console.error('Error fetching products by category:', error);
-        }
-      );
-    }
+  navigateToProductDetails(productId: number) {
+    this.router.navigate(['/products-details', productId]); // Note the corrected path
   }
 
-  updatePagedProducts() {
-    const startIndex = (this.currentPage - 1) * this.rows;
-    const endIndex = startIndex + this.rows;
-    this.pagedProducts = this.products.slice(startIndex, endIndex);
+  fetchProducts(categoryId: number) {
+    let productsObservable: Observable<any>;
+
+    if (categoryId === 0) {
+      productsObservable = this.productService.getAllProductsPaged(this.currentPage - 1, this.rows);
+    } else {
+      productsObservable = this.productService.getAllProductsByCategoryId(categoryId, this.currentPage - 1, this.rows);
+    }
+
+    productsObservable.subscribe(
+      (response: any) => {
+        this.pagedProducts = response.data;
+        this.totalProducts = response.meta.total;
+        console.log("paged products:", this.pagedProducts);
+      },
+      error => {
+        console.error('Error fetching products:', error);
+      }
+    );
   }
 
   onPageChange(event: any) {
     this.currentPage = event.page + 1; // Paginator starts from 0, adjust to 1-based index
-    this.updatePagedProducts();
+    this.fetchProducts(this.categoryId);
   }
 }
