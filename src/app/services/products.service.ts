@@ -29,4 +29,8 @@ export class ProductsService {
   getProductDetails(productId: number): Observable<any> {
     return this.http.get(`${this.api}/products/${productId}`);
   }
+
+  addProduct(product: FormData) {
+    return this.http.post<any>(`${this.api}/products/addProduct`, product);
+  }
 }

@@ -59,7 +59,7 @@ export class AppComponent {
     this.router.navigate(['/products', categoryId]);
   }
 
-  redirectToProfile() {
-    this.router.navigateByUrl('/profile');
+  redirectToAddProduct() {
+    this.router.navigateByUrl('/add');
     }
 }
