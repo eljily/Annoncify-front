@@ -30,3 +30,31 @@
     height: 150px; /* Set the desired height */
     object-fit: cover; /* or object-fit: contain; depending on your preference */
 }
+/* CSS for ad container */
+.ad-container {
+    width: 100%; /* Adjust width as needed */
+    height: 90px; /* Adjust height as needed */
+    overflow: hidden;
+  }
+  
+  /* CSS for ad slideshow */
+  .ad-slideshow {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    animation: slide 5s infinite; /* Adjust slide duration as needed */
+  }
+  
+  /* CSS animation for slideshow */
+  @keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Additional styling for individual ads (optional) */
+  .ad-slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the entire space */
+  }
+  
