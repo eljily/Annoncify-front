@@ -1,11 +1,19 @@
+<!-- Header -->
+<div class="header">
+  <p-menubar [model]="items"></p-menubar>
+</div>
+
+<!-- Content -->
 <div class="container">
-    <!-- Your existing menu -->
-    <p-tabMenu [model]="items"></p-tabMenu>
-    
-    <!-- Profile button -->
-    <button class="profile-button" (click)="redirectToAddProduct()">
-      <i class="pi pi-plus"></i>  Add New
-    </button>
+  <button class="profile-button" (click)="redirectToAddProduct()">
+    <i class="pi pi-plus"></i> Publier Votre Annonce
+  </button>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <span>&copy; eljily</span>
   </div>
-<router-outlet>
-</router-outlet>
+</footer>
