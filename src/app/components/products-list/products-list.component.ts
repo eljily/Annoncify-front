@@ -68,4 +68,8 @@ export class ProductsListComponent implements OnInit {
     this.currentPage = event.page + 1; // Paginator starts from 0, adjust to 1-based index
     this.fetchProducts(this.categoryId);
   }
+  
+  redirectToAddProduct() {
+    this.router.navigateByUrl('/add');
+    }
 }

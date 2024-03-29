@@ -26,8 +26,10 @@
 }
 
 .fixed-size-image {
-    width: 150px; /* Set the desired width */
-    height: 150px; /* Set the desired height */
+    max-width: 150px; /* Set the maximum width */
+    max-height: 150px; /* Set the maximum height */
+    width: auto; /* Allow the width to adjust while maintaining aspect ratio */
+    height: auto; /* Allow the height to adjust while maintaining aspect ratio */
     object-fit: cover; /* or object-fit: contain; depending on your preference */
 }
 /* CSS for ad container */
@@ -57,4 +59,20 @@
     height: 100%;
     object-fit: cover; /* Ensure images cover the entire space */
   }
+
+  .profile-button {
+    background-color: #ffc107; /* Orange color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Font size */
+    margin-bottom: 15px;
+    cursor: pointer; /* Add pointer cursor on hover */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+  }
+  
+  .profile-button:hover {
+    background-color: #f38a2e; /* Yellow color on hover */
+  }
+
   
