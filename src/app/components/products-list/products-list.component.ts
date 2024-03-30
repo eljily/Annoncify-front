@@ -25,7 +25,7 @@ export class ProductsListComponent implements OnInit {
 
   pagedProducts: Product[] = [];
   currentPage = 1; // Use a separate property for the current page
-  rows = 18;
+  rows = 30;
   totalProducts = 0;
   categoryId!: number;
 
