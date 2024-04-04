@@ -2,7 +2,7 @@
     <div class="details-container">
       <div class="product-images">
         <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
-                    [autoplayInterval]="3000" [showIndicators]="true" >
+                     [showIndicators]="true" >
           <ng-template let-image pTemplate="item">
             <div class="image-container">
               <img [src]="image.imageUrl" class="product-image" />
