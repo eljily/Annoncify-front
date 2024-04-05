@@ -8,5 +8,6 @@ export interface Product {
     description: string;
     createDate: Date;
     updateDate: Date;
+    hit:number;
     images: Image[];
   }
