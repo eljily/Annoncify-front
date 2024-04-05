@@ -1,74 +1,71 @@
-import { Component } from '@angular/core';
-import { Route, Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api/menuitem';
-import { TabMenuModule } from 'primeng/tabmenu';
 import { CategoryService } from './services/category.service';
-import { MenubarModule } from 'primeng/menubar';
 import { Category } from './model/Category';
+import { TabMenuModule } from 'primeng/tabmenu';
 
-
-
+import { MenubarModule } from 'primeng/menubar';
+import { SubCategory } from './model/SubCategory';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TabMenuModule,MenubarModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  imports: [RouterModule,TabMenuModule,MenubarModule]
 })
-export class AppComponent {
-
-  public constructor(private categoryService:CategoryService,private router:Router){}
+export class AppComponent implements OnInit {
   title = 'annoncify_front';
   items: MenuItem[] = [];
-   categories: Category[] = []; // Assuming Category is your model with categoryId and name properties
-  categoryIconMappings: { [key: string]: string } = { // Mapping between category names and icons
-    'Electronics':'pi pi-mobile',
+  categories: Category[] = [];
+  categoryIconMappings: { [key: string]: string } = {
+    'Electronics': 'pi pi-mobile',
     'Telephones': 'pi pi-mobile',
     'Computers': 'pi pi-desktop',
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
-    'Home':'pi pi-home',
-    'Others' : 'pi pi-user'
+    'Home': 'pi pi-home',
+    'Others': 'pi pi-user'
   };
 
+  constructor(private categoryService: CategoryService, private router: Router) { }
+
   ngOnInit() {
-    // Fetch categories from backend
-    // Example:
     this.categoryService.getAllCategories().subscribe(
       (response: any) => {
         this.categories = response;
-  
-        // Check if a category with the name "Home" already exists
+
         const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
         if (homeCategoryIndex === -1) {
-          // Add the Home category manually only if it doesn't already exist
-          const homeCategory: Category = { id: 0, name: 'Home' };
+          const homeCategory: Category = { id: 0, name: 'Home', subCategories: [] };
           this.categories.unshift(homeCategory);
         }
-  
-        // Ensure "Others" category appears last
+
         const othersCategoryIndex = this.categories.findIndex(category => category.name === 'Others');
         if (othersCategoryIndex !== -1) {
-          const othersCategory = this.categories.splice(othersCategoryIndex, 1)[0]; // Remove "Others" category
-          this.categories.push(othersCategory); // Push it to the end
+          const othersCategory = this.categories.splice(othersCategoryIndex, 1)[0];
+          this.categories.push(othersCategory);
         }
-  
-        // Populate menu items dynamically based on categories and icon mappings
-        this.items = this.categories.map(category => ({
-          label: category.name.trim() ? category.name : 'Unnamed Category', // Check for empty label
-          icon: this.categoryIconMappings[category.name],
-          routerLink: ['/products', category.id]
-        })).filter(item => item.label && item.routerLink); // Filter out items with empty labels or routerLinks
+
+        this.items = this.categories.map(category => {
+          const subMenuItems: MenuItem[] = category.subCategories.map((subCategory: SubCategory) => ({
+            label: subCategory.name,
+            routerLink: ['/products', subCategory.id]
+          }));
+          return {
+            label: category.name.trim() ? category.name : 'Unnamed Category',
+            icon: this.categoryIconMappings[category.name],
+            items: subMenuItems
+          };
+        });
       },
       error => {
         console.error('Error fetching categories:', error);
       }
     );
   }
-  
 
   navigateToCategory(categoryId: number) {
     this.router.navigate(['/products', categoryId]);
   }
-
 }
