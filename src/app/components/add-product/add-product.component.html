@@ -1,36 +1,37 @@
-<!-- add-product.component.html -->
 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <fieldset class="product-fieldset">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
-      </div>
-      <div class="form-group">
-        <label for="price">Price</label>
-        <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
-      </div>
-      <div class="form-group">
-        <label for="category">Category</label>
-        <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required>
-          <option value="" disabled selected>Select category</option>
-          <option value="Telephones">Telephones</option>
-          <option value="Computers">Computers</option>
-          <option value="Tablets">Tablets</option>
-          <option value="Accessories">Accessories</option>
-          <option value="Others">Others</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="images">Images</label>
-        <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choose" accept="image/*" [auto]="true"></p-fileUpload>
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category">Submit</button>
-    </fieldset>
-  </form>
-  
-  <p-messages [(value)]="msgs"></p-messages>
-  
+  <fieldset class="product-fieldset">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (change)="onCategoryChange(product.category)">
+        <option value="" disabled selected>Select category</option>
+        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+      </select>
+    </div>    
+    <div class="form-group">
+      <label for="subcategory">Subcategory</label>
+      <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
+        <option value="" disabled selected>Select subcategory</option>
+        <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="images">Images</label>
+      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choose" accept="image/*" [auto]="true"></p-fileUpload>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">Submit</button>
+  </fieldset>
+</form>
+
+<p-messages [(value)]="msgs"></p-messages>

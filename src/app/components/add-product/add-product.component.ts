@@ -1,25 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ProductsService } from '../../services/products.service';
-import { MessageService } from 'primeng/api'; // Import MessageService
-import { FormsModule, NgModel, NgModelGroup } from '@angular/forms';
+import { CategoryService } from '../../services/category.service';
+import { FormsModule } from '@angular/forms';
 import { FieldsetModule } from 'primeng/fieldset';
-import { FileUpload, FileUploadModule } from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload';
+import { Category } from '../../model/Category';
+import { SubCategory } from '../../model/SubCategory';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule, FieldsetModule, FileUploadModule],
+  imports: [FormsModule, FieldsetModule, FileUploadModule,CommonModule],
   templateUrl: './add-product.component.html',
-  styleUrl: './add-product.component.scss',
-  providers: [MessageService] // Provide MessageService
+  styleUrls: ['./add-product.component.scss'],
+  providers: [MessageService]
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit {
 
-  constructor(private productService: ProductsService, private messageService: MessageService) { } // Inject MessageService
+  constructor(private productService: ProductsService, private categoryService: CategoryService, private router: Router, private messageService: MessageService) { }
 
   product: any = {};
   images: any[] = [];
-  msgs: any[] = []; // Define msgs array to hold messages
+  msgs: any[] = [];
+  categories: Category[] = [];
+  subcategories: SubCategory[] = [];
+
+  ngOnInit() {
+    this.categoryService.getAllCategories().subscribe(
+      (response: any) => {
+        console.log(response)
+        this.categories = response;
+      },
+      error => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
 
   onSubmit() {
     const formData = new FormData();
@@ -27,6 +46,7 @@ export class AddProductComponent {
     formData.append('description', this.product.description);
     formData.append('price', this.product.price);
     formData.append('category', this.product.category);
+    formData.append('subCategoryId', this.product.subcategory); // Append selected subcategory
     for (let i = 0; i < this.images.length; i++) {
       formData.append('images', this.images[i]);
     }
@@ -34,8 +54,8 @@ export class AddProductComponent {
     this.productService.addProduct(formData).subscribe(
       response => {
         console.log('Product added successfully', response);
-        this.messageService.add({severity:'success', summary:'Success', detail:'Product added successfully'}); // Display success message
-        this.clearForm(); // Clear form fields
+        this.messageService.add({severity:'success', summary:'Success', detail:'Product added successfully'});
+        this.clearForm();
       },
       error => {
         console.error('Error adding product', error);
@@ -45,15 +65,27 @@ export class AddProductComponent {
   }
   
   clearForm() {
-    this.product = {}; // Reset product object
-    this.images = []; // Clear images array
+    this.product = {};
+    this.images = [];
   }
   
-
   onFileSelect(event: any) {
     const files: File[] = event.files;
     for (let i = 0; i < files.length; i++) {
       this.images.push(files[i]);
+    }
+  }
+
+  onCategoryChange(categoryName: string) {
+    console.log('Selected category:', categoryName);
+    const selectedCategory = this.categories.find(category => category.name === categoryName);
+    console.log('Selected category object:', selectedCategory);
+    if (selectedCategory && selectedCategory.subCategories) {
+      this.subcategories = selectedCategory.subCategories;
+      console.log('Subcategories:', this.subcategories);
+    } else {
+      this.subcategories = [];
+      console.log('No subcategories found for the selected category.');
     }
   }
 }
