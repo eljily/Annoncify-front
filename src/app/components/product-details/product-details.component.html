@@ -1,21 +1,20 @@
 <div class="product-details" *ngIf="productDetails">
-    <div class="details-container">
+  <div class="details-container">
       <div class="product-images">
-        <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
-                     [showIndicators]="true" >
-          <ng-template let-image pTemplate="item">
-            <div class="image-container">
-              <img [src]="image.imageUrl" class="product-image" />
-            </div>
-          </ng-template>
-        </p-carousel>
-        <div class="price">{{ productDetails.price }} MRU</div>
-        <div>Vue :{{ productDetails.hit }} </div>
+          <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
+              [showIndicators]="true">
+              <ng-template let-image pTemplate="item">
+                  <div class="image-container">
+                      <img [src]="image?.imageUrl ? image.imageUrl : 'https://www.voursa.com/images/noimage.jpg'" class="product-image" />
+                  </div>
+              </ng-template>
+          </p-carousel>
+          <div class="price">{{ productDetails.price }} MRU</div>
       </div>
       <div class="product-info">
-        <h2>{{ productDetails.name }}</h2>
-        <p class="product-description">{{ productDetails.description }}</p>
+          <h1>{{ productDetails.name }}</h1>
+          <h5>Vue :{{ productDetails.hit }} </h5>
+          <p class="product-description">{{ productDetails.description }}</p>
       </div>
-    </div>
   </div>
-  
+</div>

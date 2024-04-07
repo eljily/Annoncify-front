@@ -1,5 +1,6 @@
 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
   <fieldset class="product-fieldset">
+    <legend>Add Product</legend>
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
@@ -10,7 +11,10 @@
     </div>
     <div class="form-group">
       <label for="price">Price</label>
-      <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
+      <div class="input-group">
+        <span class="input-group-text">MRU</span>
+        <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
+      </div>
     </div>
     <div class="form-group">
       <label for="category">Category</label>
@@ -28,7 +32,7 @@
     </div>
     <div class="form-group">
       <label for="images">Images</label>
-      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choose" accept="image/*" [auto]="true"></p-fileUpload>
+      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choose" accept="image/*" [auto]="true" class="btn btn-primary"></p-fileUpload>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">Submit</button>
   </fieldset>

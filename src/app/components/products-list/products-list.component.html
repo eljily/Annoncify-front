@@ -1,37 +1,26 @@
-<div class="ad-container">
+<!-- <div class="ad-container">
   <div class="ad-slideshow">
     <img src="https://rimnow.mr/images/ch38.jpg" alt="Ad 1" />
     <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
-    <img src="https://rimnow.mr/images/ch38.jpg" alt="Ad 1" />
-    <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
-    <img src="https://rimnow.mr/images/ch38.jpg" alt="Ad 1" />
-    <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
-    <img src="https://rimnow.mr/images/ch38.jpg" alt="Ad 1" />
-    <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
-    <!-- Add more image elements for additional ads -->
-
   </div>
+</div> -->
 
-</div>
 <div class="card">
   <button class="profile-button" (click)="redirectToAddProduct()">
     <i class="pi pi-plus"></i> Publier Votre Annonce
   </button>
   <div class="product-grid">
-    <div class="card" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
-      <!-- Make the entire card clickable -->
-      <div class="grid grid-nogutter">
-        <div class="col-12">
-          <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"  [routerLink]="['/product-details', item.id]" >
-            <!-- Make the product image clickable -->
-            <img class="fixed-size-image shadow-2 block xl:block mx-auto border-round" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'default-image-url'" [alt]="item.name" />
-            <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-                <div class="text-2xl font-bold text-900">{{ item.name }}</div>
-              </div>
-              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2 ">
-                <span class="text-2xl font-semibold ">{{ item.price + " MRU" }}</span>
-              </div>
+    <div class="card-item" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
+      <div class="product-details">
+        <div class="image-container">
+          <img class="fixed-size-image" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'https://www.voursa.com/images/noimage.jpg'" [alt]="item.name" />
+          <div class="overlay">
+            <div class="name-and-price">
+              <div class="product-name">{{ item.name }}</div>
+              <div class="price">{{ item.price }} MRU</div>
+            </div>
+            <div class="views">
+              <i class="pi pi-eye"></i> {{ item.hit }}
             </div>
           </div>
         </div>

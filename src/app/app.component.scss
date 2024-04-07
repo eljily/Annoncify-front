@@ -28,3 +28,38 @@
   text-decoration: none; /* Remove underline */
   margin-left: 10px; /* Add some spacing */
 }
+
+/* app.component.scss */
+:host ::ng-deep .custom-menubar {
+  background-color: #f38a2e;
+  color : #fff; /* Navbar background color */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-link {
+  color: #10e3fa !important; /* Navbar link color */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-link:hover {
+  background-color: #10e3fa !important; /* Navbar link hover background color */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-link:hover .ui-menuitem-text {
+  color: #fcfcfc !important; /* Navbar link hover text color */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-root {
+  border: none !important; /* Remove border for main menu items */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child {
+  background-color: #10e3fa !important; /* Submenu background color */
+  border: none !important; /* Remove border for submenus */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link {
+  color: #333 !important; /* Submenu link color */
+}
+
+:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link:hover {
+  background-color: #f38a2e !important; /* Submenu link hover background color */
+}

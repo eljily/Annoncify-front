@@ -47,6 +47,7 @@ export class ProductsListComponent implements OnInit {
     let productsObservable: Observable<any>;
 
     if (categoryId === 0) {
+      this.rows = 32;
       productsObservable = this.productService.getAllProductsPaged(this.currentPage - 1, this.rows);
     } else {
       productsObservable = this.productService.getAllProductsByCategoryId(categoryId, this.currentPage - 1, this.rows);
