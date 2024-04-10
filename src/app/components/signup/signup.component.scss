@@ -1,0 +1,24 @@
+.signup-container {
+    display: flex;
+    border: 1px solid orange;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+  }
+  
+  .signup-content {
+    width: 500px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+  .p-inputgroup {
+    margin-bottom: 15px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  

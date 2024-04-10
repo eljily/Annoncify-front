@@ -4,16 +4,16 @@ import { MenuItem } from 'primeng/api/menuitem';
 import { CategoryService } from './services/category.service';
 import { Category } from './model/Category';
 import { TabMenuModule } from 'primeng/tabmenu';
-
 import { MenubarModule } from 'primeng/menubar';
 import { SubCategory } from './model/SubCategory';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [RouterModule,TabMenuModule,MenubarModule,CommonModule]
+  imports: [RouterModule, TabMenuModule, MenubarModule, CommonModule]
 })
 export class AppComponent implements OnInit {
   title = 'annoncify_front';
@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
     'Home': 'pi pi-home',
-    'Others': 'pi pi-user'
+    'Login': 'pi pi-sign-in', // Icon for Login
+    'Signup': 'pi pi-user-plus' // Icon for Signup
   };
 
   constructor(private categoryService: CategoryService, private router: Router) { }
@@ -41,12 +42,6 @@ export class AppComponent implements OnInit {
           console.log("----------Home Category----------")
           const homeCategory: Category = { id: 0, name: 'Home', subCategories: [] };
           this.categories.unshift(homeCategory);
-        }
-
-        const othersCategoryIndex = this.categories.findIndex(category => category.name === 'Others');
-        if (othersCategoryIndex !== -1) {
-          const othersCategory = this.categories.splice(othersCategoryIndex, 1)[0];
-          this.categories.push(othersCategory);
         }
 
         this.items = this.categories.map(category => {
@@ -65,6 +60,12 @@ export class AppComponent implements OnInit {
             routerLink: routerLink // Assign routerLink to the menu item
           };
         });
+
+        // Add login and signup items to the menu
+        this.items.push(
+          { label: 'Login', icon: this.categoryIconMappings['Login'], routerLink: ['/login'] },
+          { label: 'Signup', icon: this.categoryIconMappings['Signup'], routerLink: ['/signup'] }
+        );
       },
       error => {
         console.error('Error fetching categories:', error);
@@ -75,7 +76,7 @@ export class AppComponent implements OnInit {
   navigateToCategory(categoryId: number) {
     console.log(categoryId)
     if (categoryId === 0) {
-     
+
       // If "Home" category is clicked and it has no subcategories, navigate to /products/0
       const homeCategory = this.categories.find(category => category.id === 0);
       if (homeCategory && homeCategory.subCategories.length === 0) {

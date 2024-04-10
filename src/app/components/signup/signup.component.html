@@ -1,0 +1,32 @@
+<div class="signup-container">
+    <div class="signup-content p-shadow-5">
+      <h2>Sign Up</h2>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-user"></i>
+        </span>
+        <input type="text" pInputText placeholder="Name" [(ngModel)]="user.name">
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-phone"></i>
+        </span>
+        <input type="text" pInputText placeholder="Phone Number" [(ngModel)]="user.phoneNumber">
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-envelope"></i>
+        </span>
+        <input type="text" pInputText placeholder="Email" [(ngModel)]="user.email">
+      </div>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-lock"></i>
+        </span>
+        <input type="password" pInputText placeholder="Password" [(ngModel)]="user.password">
+      </div>
+      <button type="button" pButton label="Sign Up" (click)="register()" class="p-button-success"></button>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+  </div>
+  
