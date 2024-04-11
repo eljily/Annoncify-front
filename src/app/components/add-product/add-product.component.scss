@@ -44,7 +44,7 @@ select {
 }
 
 .input-group-text {
-  background-color: #007bff;
+  background-color: #fb9339; /* Orange color */
   color: #fff;
   border: none;
   border-radius: 4px 0 0 4px;
@@ -56,7 +56,7 @@ select {
 }
 
 button {
-  background-color: #007bff;
+  background-color: #fb9339; /* Orange color */
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -65,20 +65,30 @@ button {
 }
 
 button:hover {
-  background-color: #fbba15;
+  background-color: #4caf50; /* Green color */
 }
 
 p-messages {
   margin-top: 20px;
 }
-.input-group-text,
+
 .btn-primary {
-  background-color: #fb9339;
-  border-color: #fb9339; /* Add border color to match the background */
+  background-color: #4caf50; /* Green color */
+  border-color: #4caf50; /* Green color */
 }
 
-.input-group-text,
 .btn-primary:hover {
-  background-color: #f5a104; /* Change the hover background color */
-  border-color: #f5a104; /* Change the hover border color */
+  background-color: #66bb6a; /* Lighter green color */
+  border-color: #66bb6a; /* Lighter green color */
+}
+
+/* Additional styling for PrimeNG file upload component */
+.ui-fileupload-choose {
+  background-color: #fb9339; /* Orange color */
+  border-color: #fb9339; /* Orange color */
+}
+
+.ui-fileupload-choose:hover {
+  background-color: #f5a104; /* Lighter orange color */
+  border-color: #f5a104; /* Lighter orange color */
 }

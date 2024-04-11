@@ -8,6 +8,7 @@ import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-products-list',
@@ -20,7 +21,8 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService : AuthService
   ) {}
 
   pagedProducts: Product[] = [];
@@ -28,8 +30,13 @@ export class ProductsListComponent implements OnInit {
   rows = 30;
   totalProducts = 0;
   categoryId!: number;
+  isAuthenticated! :boolean;
 
   ngOnInit() {
+    // Subscribe to authentication status changes
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+    });
     this.route.paramMap.subscribe(params => {
       // Extract categoryId from route parameters
       this.categoryId = Number(params.get('categoryId'));
@@ -71,6 +78,11 @@ export class ProductsListComponent implements OnInit {
   }
   
   redirectToAddProduct() {
-    this.router.navigateByUrl('/add');
+    if (this.isAuthenticated){
+      this.router.navigateByUrl('/add');
+    }
+   else{
+    this.router.navigateByUrl('/login');
+   }
     }
 }
