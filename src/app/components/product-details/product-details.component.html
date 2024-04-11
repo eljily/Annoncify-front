@@ -13,6 +13,7 @@
       </div>
       <div class="product-info">
           <h1>{{ productDetails.name }}</h1>
+          <h5 style="color: black;">Depuis :{{ getRelativeTime(productDetails.createDate) }} </h5>
           <h5>Vue :{{ productDetails.hit }} </h5>
           <p class="product-description">{{ productDetails.description }}</p>
       </div>

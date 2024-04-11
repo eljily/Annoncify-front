@@ -41,4 +41,34 @@ export class ProductDetailsComponent {
       }
     );
   }
+
+  getRelativeTime(dateString: Date): string {
+    const currentDate = new Date();
+    const date = new Date(dateString);
+    const diffMilliseconds = currentDate.getTime() - date.getTime();
+    const diffSeconds = Math.floor(diffMilliseconds / 1000);
+  
+    if (diffSeconds < 60) {
+      return `${diffSeconds} secondes`;
+    }
+  
+    const diffMinutes = Math.floor(diffSeconds / 60);
+    if (diffMinutes < 60) {
+      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''}`;
+    }
+  
+    const diffHours = Math.floor(diffMinutes / 60);
+    if (diffHours < 24) {
+      return `${diffHours} heure${diffHours > 1 ? 's' : ''}`;
+    }
+  
+    const diffDays = Math.floor(diffHours / 24);
+    if (diffDays < 30) {
+      return `${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+    }
+  
+    const diffMonths = Math.floor(diffDays / 30);
+    return `${diffMonths} mois${diffMonths > 1 ? 's' : ''}`;
+  }
+  
 }

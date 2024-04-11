@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
+
   isAuthenticated: boolean = false;
   title = 'annoncify_front';
   items: MenuItem[] = [];
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
     'Computers': 'pi pi-desktop',
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
-    'Home': 'pi pi-home',
+    'Accueil': 'pi pi-home',
     'Login': 'pi pi-sign-in', // Icon for Login
     'Signup': 'pi pi-user-plus' // Icon for Signup
   };
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit {
         const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
         if (homeCategoryIndex === -1) {
           console.log("----------Home Category----------")
-          const homeCategory: Category = { id: 0, name: 'Home', subCategories: [] };
+          const homeCategory: Category = { id: 0, name: 'Accueil', subCategories: [] };
           this.categories.unshift(homeCategory);
         }
   
@@ -77,8 +78,16 @@ export class AppComponent implements OnInit {
         // Add authentication-related menu items based on authentication status
         if (this.isAuthenticated) {
           this.items.push(
-            { label: 'Profile', icon: 'pi pi-user', routerLink: ['/profile'] },
-            { label: 'Logout', icon: 'pi pi-power-off', command: () => this.logout() }
+            {
+              label: 'Profile',
+              icon: 'pi pi-user',
+              items: [
+                { label: 'Gérer mes annonces', icon: 'pi pi-list', routerLink: ['/manage-ads'] },
+                { label: 'Modifier les informations', icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
+                { label: 'Logout', icon: 'pi pi-power-off', command: () => this.logout() } 
+              ]
+            },
+            
           );
         } else {
           this.items.push(
@@ -93,9 +102,6 @@ export class AppComponent implements OnInit {
     );
   }
   
-  
-  
-
   logout() {
     this.authService.logout().subscribe(() => {
       // Redirect to the products page after logout
@@ -120,4 +126,9 @@ export class AppComponent implements OnInit {
       this.router.navigate(['/products', categoryId]);
     }
   }
+
+  navigateToAboutUs() {
+    this.router.navigateByUrl("about-us");
+  }
+
 }

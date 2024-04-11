@@ -4,6 +4,7 @@
 }
 
 .footer {
+  margin: 0;
   background-color: #333; /* Customize as needed */
   color: #fff; /* Customize as needed */
   text-align: center;
@@ -18,10 +19,12 @@
 /* Additional styles for footer */
 .footer {
   margin-top: 20px;
+  margin-bottom: 0;
   background-color:#fb9339; /* Dark background color */
   color: #fff; /* Text color */
   text-align: center; /* Center align text */
   padding: 10px; /* Add padding */
+  
 }
 .footer a {
   color:rgb(9, 255, 9); /* Blue color, you can change it */
@@ -40,7 +43,7 @@
 }
 
 :host ::ng-deep .custom-menubar .ui-menuitem-link:hover {
-  background-color: #10e3fa !important; /* Navbar link hover background color */
+  background-color: #02ff06 !important; /* Navbar link hover background color */
 }
 
 :host ::ng-deep .custom-menubar .ui-menuitem-link:hover .ui-menuitem-text {
@@ -57,7 +60,7 @@
 }
 
 :host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link {
-  color: #333 !important; /* Submenu link color */
+  color: #000000 !important; /* Submenu link color */
 }
 
 :host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link:hover {
