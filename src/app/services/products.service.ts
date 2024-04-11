@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../model/Product';
@@ -31,7 +31,14 @@ export class ProductsService {
     return this.http.get(`${this.api}/products/${productId}`);
   }
 
-  addProduct(product: FormData) {
-    return this.http.post<any>(`${this.api}/products/addProduct`, product);
+  addProduct(product: FormData): Observable<any> {
+    // Get the token from local storage
+    const token = localStorage.getItem('token');
+
+    // Set the authorization header with the bearer token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    // Make the HTTP POST request with the product data and authorization header
+    return this.http.post<any>(`${this.api}/products/addProduct`, product, { headers });
   }
 }

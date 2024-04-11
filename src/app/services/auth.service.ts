@@ -12,10 +12,16 @@ export class AuthService {
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient) {
+    // Check if token is present in localStorage
+  const tokenPresent = localStorage.getItem('token') !== null;
+  // Set the isAuthenticatedSubject based on the presence of the token
+  this.isAuthenticatedSubject.next(tokenPresent);
+  }
 
   // Method to set authentication status
   setAuthenticated(isAuthenticated: boolean) {
+  
     this.isAuthenticatedSubject.next(isAuthenticated);
     console.log("user authenticated!!",isAuthenticated);
   }

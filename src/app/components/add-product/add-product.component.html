@@ -1,8 +1,8 @@
 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
   <fieldset class="product-fieldset">
-    <legend>Add Product</legend>
+    <legend>Ajouter votre Annonce Gratuit!!</legend>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Nom du produit</label>
       <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
     </div>
     <div class="form-group">
@@ -10,31 +10,31 @@
       <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
     </div>
     <div class="form-group">
-      <label for="price">Price</label>
+      <label for="price">Prix en mru</label>
       <div class="input-group">
         <span class="input-group-text">MRU</span>
         <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
       </div>
     </div>
     <div class="form-group">
-      <label for="category">Category</label>
+      <label for="category">Categorie</label>
       <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (change)="onCategoryChange(product.category)">
         <option value="" disabled selected>Select category</option>
         <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
       </select>
     </div>    
     <div class="form-group">
-      <label for="subcategory">Subcategory</label>
+      <label for="subcategory">Sous Categorie</label>
       <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
         <option value="" disabled selected>Select subcategory</option>
         <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="images">Images</label>
-      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choose" accept="image/*" [auto]="true" class="btn btn-primary"></p-fileUpload>
+      <label for="images">Images max 2</label>
+      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choisir" accept="image/*" [auto]="true" styleClass=" p-button-success"></p-fileUpload>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">Publier</button>
   </fieldset>
 </form>
 
