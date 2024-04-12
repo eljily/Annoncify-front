@@ -9,6 +9,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { Category } from '../../model/Category';
 import { SubCategory } from '../../model/SubCategory';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-add-product',
@@ -20,7 +21,11 @@ import { CommonModule } from '@angular/common';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private productService: ProductsService, private categoryService: CategoryService, private router: Router, private messageService: MessageService) { }
+  constructor(private productService: ProductsService, 
+    private categoryService: CategoryService, 
+    private router: Router,
+     private messageService: MessageService,
+     public translationService:TranslationService) { }
 
   product: any = {};
   images: any[] = [];

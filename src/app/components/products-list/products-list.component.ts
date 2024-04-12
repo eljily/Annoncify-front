@@ -9,6 +9,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-products-list',
@@ -22,7 +24,8 @@ export class ProductsListComponent implements OnInit {
     private productService: ProductsService,
     private router: Router,
     private route: ActivatedRoute,
-    private authService : AuthService
+    private authService : AuthService,
+    public translationService:TranslationService
   ) {}
 
   pagedProducts: Product[] = [];

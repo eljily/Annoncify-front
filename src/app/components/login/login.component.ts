@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,9 @@ export class LoginComponent {
   password!: string;
   messageService!: MessageService;
 
-  constructor(private router: Router,private authService:AuthService) { }
+  constructor(private router: Router,
+    private authService:AuthService,
+    public translationService:TranslationService) { }
 
   login() {
     // Call the login method from your authentication service

@@ -12,7 +12,8 @@
 <!-- Footer -->
 <footer class="footer" >
   <div class="container">
-    <span>&copy; eljily sidibrahim</span>
-    <a href="/about-us">About Us</a>
+    <span>&copy;{{ translationService.translate('eljily sidibrahim') }}</span>
+    
+    <a (click)="navigateToAboutUs()">  {{ translationService.translate('About Us') }}  </a>
   </div>
 </footer>

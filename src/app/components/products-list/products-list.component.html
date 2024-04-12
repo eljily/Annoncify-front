@@ -7,7 +7,7 @@
 
 <div class="card">
   <button class="profile-button" (click)="redirectToAddProduct()">
-    <i class="pi pi-plus"></i> Publier Votre Annonce
+    <i class="pi pi-plus"></i> {{this.translationService.translate('Publier Votre Annonce')}}
   </button>
   <div class="product-grid">
     <div class="card-item" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">

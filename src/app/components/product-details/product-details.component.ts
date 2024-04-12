@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../model/Product';
 import { CarouselModule } from 'primeng/carousel';
+import { TranslationService } from '../../services/translation.service';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +19,9 @@ export class ProductDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    public translateService:TranslationService,
+    private appState : AppStateService
   ) { }
 
   ngOnInit() {
@@ -49,26 +53,46 @@ export class ProductDetailsComponent {
     const diffSeconds = Math.floor(diffMilliseconds / 1000);
   
     if (diffSeconds < 60) {
-      return `${diffSeconds} secondes`;
+      return `${diffSeconds} ${this.translateService.translate('secondes')}`;
     }
   
     const diffMinutes = Math.floor(diffSeconds / 60);
     if (diffMinutes < 60) {
-      return `${diffMinutes} minute${diffMinutes > 1 ? 's' : ''}`;
+      const minuteKey = this.translateService.translate('minute');
+      const pluralSuffix = this.shouldAddPlural(diffMinutes);
+      return `${diffMinutes} ${minuteKey}${pluralSuffix}`;
     }
   
     const diffHours = Math.floor(diffMinutes / 60);
     if (diffHours < 24) {
-      return `${diffHours} heure${diffHours > 1 ? 's' : ''}`;
+      const heureKey = this.translateService.translate('heure');
+      const pluralSuffix = this.shouldAddPlural(diffHours);
+      return `${diffHours} ${heureKey}${pluralSuffix}`;
     }
   
     const diffDays = Math.floor(diffHours / 24);
     if (diffDays < 30) {
-      return `${diffDays} jour${diffDays > 1 ? 's' : ''}`;
+      const jourKey = this.translateService.translate('jour');
+      const pluralSuffix = this.shouldAddPlural(diffDays);
+      return `${diffDays} ${jourKey}${pluralSuffix}`;
     }
   
     const diffMonths = Math.floor(diffDays / 30);
-    return `${diffMonths} mois${diffMonths > 1 ? 's' : ''}`;
-  }
+    const moisKey = this.translateService.translate('mois');
+    const pluralSuffix = this.shouldAddPlural(diffMonths);
+    return `${diffMonths} ${moisKey} ${pluralSuffix}`;
+}
+
+shouldAddPlural(value: number): string {
+    const language = this.appState.userCurrentLanguage;
+    if (language === 'ar') {
+        return value > 1 ? '' : '';
+    } else {
+        return value > 1 ? 's' : '';
+    }
+}
+
+
+
   
 }

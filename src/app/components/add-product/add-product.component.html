@@ -1,40 +1,40 @@
 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
   <fieldset class="product-fieldset">
-    <legend>Ajouter votre Annonce Gratuit!!</legend>
+    <legend>{{ translationService.translate('Ajouter votre Annonce Gratuit!!') }}</legend>
     <div class="form-group">
-      <label for="name">Nom du produit</label>
+      <label for="name">{{ translationService.translate('Nom du produit') }}</label>
       <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="description">{{ translationService.translate('Description') }}</label>
       <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
     </div>
     <div class="form-group">
-      <label for="price">Prix en mru</label>
+      <label for="price">{{ translationService.translate('Prix en mru') }}</label>
       <div class="input-group">
-        <span class="input-group-text">MRU</span>
+        <span class="input-group-text">{{ translationService.translate('MRU') }}</span>
         <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
       </div>
     </div>
     <div class="form-group">
-      <label for="category">Categorie</label>
+      <label for="category">{{ translationService.translate('Categorie') }}</label>
       <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (change)="onCategoryChange(product.category)">
-        <option value="" disabled selected>Select category</option>
+        <option value="" disabled selected>{{ translationService.translate('Select category') }}</option>
         <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
       </select>
     </div>    
     <div class="form-group">
-      <label for="subcategory">Sous Categorie</label>
+      <label for="subcategory">{{ translationService.translate('Sous Categorie') }}</label>
       <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
-        <option value="" disabled selected>Select subcategory</option>
+        <option value="" disabled selected>{{ translationService.translate('Select subcategory') }}</option>
         <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="images">Images max 2</label>
-      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="Choisir" accept="image/*" [auto]="true" styleClass=" p-button-success"></p-fileUpload>
+      <label for="images">{{ translationService.translate('Images max 2') }}</label>
+      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="{{ translationService.translate('Choisir') }}" accept="image/*" [auto]="true" styleClass=" p-button-success"></p-fileUpload>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">Publier</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">{{ translationService.translate('Publier') }}</button>
   </fieldset>
 </form>
 

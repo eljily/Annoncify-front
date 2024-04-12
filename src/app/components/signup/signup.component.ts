@@ -6,6 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../model/User';
 import { NgIf } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,8 @@ export class SignupComponent {
   user: User = { name: '', phoneNumber: '', email: '', password: '' }; // Initialize user object with empty values
   errorMessage!: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    public translationService : TranslationService) { }
 
   register() {
     this.authService.registerUser(this.user)

@@ -1,24 +1,22 @@
 <div class="login-container">
-    <div class="login-content p-shadow-5">
-      <h2>Bienvenu</h2>
-      <h4>Se connecter à Annoncify
-       pour ajouter et gérer vos annonces</h4>
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">
-          <i class="pi pi-phone"></i>
-        </span>
-        <input type="text" pInputText placeholder="Phone Number" [(ngModel)]="phoneNumber">
-      </div>
-      <div class="p-inputgroup">
-        <span class="p-inputgroup-addon">
-          <i class="pi pi-lock"></i>
-        </span>
-        <input type="password" pInputText placeholder="Password" [(ngModel)]="password">
-      </div>
-      <button type="button" pButton label="Login" (click)="login()" class="p-button-success"></button>
-      <!-- <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div> -->
-      <h5>pas encore member <a href="/signup">Cliquer Ici</a></h5>
+  <div class="login-content p-shadow-5">
+    <h2>{{ translationService.translate('Bienvenu') }}</h2>
+    <h4>{{ translationService.translate('Se connecter à Annoncify pour ajouter et gérer vos annonces') }}</h4>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-phone"></i>
+      </span>
+      <input type="text" pInputText placeholder="{{ translationService.translate('Phone Number') }}" [(ngModel)]="phoneNumber">
     </div>
-    
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <input type="password" pInputText placeholder="{{ translationService.translate('Password') }}" [(ngModel)]="password">
+    </div>
+    <button type="button" pButton label="{{ translationService.translate('Login') }}" (click)="login()" class="p-button-success"></button>
+    <!-- <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div> -->
+    <h5>{{ translationService.translate('pas encore member') }} <a href="/signup">{{ translationService.translate('Cliquer Ici') }}</a></h5>
   </div>
   
+</div>

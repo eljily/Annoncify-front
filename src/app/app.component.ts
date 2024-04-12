@@ -8,6 +8,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { SubCategory } from './model/SubCategory';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
+import { TranslationService } from './services/translation.service';
 
 @Component({
   selector: 'app-root',
@@ -30,13 +31,28 @@ export class AppComponent implements OnInit {
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
     'Accueil': 'pi pi-home',
+    'Home': 'pi pi-home',
+    'الرئيسية': 'pi pi-home',
     'Login': 'pi pi-sign-in', // Icon for Login
     'Signup': 'pi pi-user-plus' // Icon for Signup
   };
 
-  constructor(private categoryService: CategoryService, private router: Router,private authService:AuthService) { }
+  constructor(private categoryService: CategoryService,
+     private router: Router,
+     private authService:AuthService,
+     public translationService : TranslationService) { }
 
   ngOnInit() {
+    this.translationService.loadTranslations();
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage) {
+      this.translationService.setLanguage(storedLanguage);
+    }
+    this.translationService.currentLanguage.subscribe(() => {
+      // Update translated strings whenever the language changes
+      this.loadCategories();
+    });
+
     // Subscribe to authentication status changes
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
       this.isAuthenticated = isAuthenticated;
@@ -53,7 +69,7 @@ export class AppComponent implements OnInit {
         const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
         if (homeCategoryIndex === -1) {
           console.log("----------Home Category----------")
-          const homeCategory: Category = { id: 0, name: 'Accueil', subCategories: [] };
+          const homeCategory: Category = { id: 0, name: this.translationService.translate('Accueil'), subCategories: [] };
           this.categories.unshift(homeCategory);
         }
   
@@ -68,31 +84,44 @@ export class AppComponent implements OnInit {
             routerLink: ['/products', subCategory.id]
           }));
           return {
-            label: category.name.trim() ? category.name : 'Unnamed Category',
+            label: category.name && category.name.trim() ? category.name : '',
             icon: this.categoryIconMappings[category.name],
             items: subMenuItems,
             routerLink: routerLink // Assign routerLink to the menu item
           };
         });
   
+        // Add language selection menu item
+        this.items.push(
+          {
+            label: '',
+            icon: 'pi pi-globe',
+            items: [
+              { label: this.translationService.translate('English'), icon: 'pi pi-flag', command: () => this.changeLanguage('en') },
+              { label: this.translationService.translate('Arabic'), icon: 'pi pi-flag', command: () => this.changeLanguage('ar') },
+              { label: this.translationService.translate('French'), icon: 'pi pi-flag', command: () => this.changeLanguage('fr') }
+            ]
+          }
+        );
+  
         // Add authentication-related menu items based on authentication status
         if (this.isAuthenticated) {
           this.items.push(
             {
-              label: 'Profile',
+              label: this.translationService.translate('Profile'),
               icon: 'pi pi-user',
               items: [
-                { label: 'Gérer mes annonces', icon: 'pi pi-list', routerLink: ['/manage-ads'] },
-                { label: 'Modifier les informations', icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
-                { label: 'Logout', icon: 'pi pi-power-off', command: () => this.logout() } 
+                { label: this.translationService.translate('Gérer mes annonces'), icon: 'pi pi-list', routerLink: ['/manage-ads'] },
+                { label: this.translationService.translate('Modifier les informations'), icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
+                { label: this.translationService.translate('Logout'), icon: 'pi pi-power-off', command: () => this.logout() } 
               ]
             },
             
           );
         } else {
           this.items.push(
-            { label: 'Login', icon: 'pi pi-sign-in', routerLink: ['/login'] },
-            { label: 'Signup', icon: 'pi pi-user-plus', routerLink: ['/signup'] }
+            { label: this.translationService.translate('Login'), icon: 'pi pi-sign-in', routerLink: ['/login'] },
+            { label: this.translationService.translate('Signup'), icon: 'pi pi-user-plus', routerLink: ['/signup'] }
           );
         }
       },
@@ -101,6 +130,15 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  changeLanguage(language: string) {
+    // Set the language in the translation service
+    this.translationService.setLanguage(language);
+    // Store the language in local storage
+    localStorage.setItem('language', language);
+    this.loadCategories();
+  }
+  
   
   logout() {
     this.authService.logout().subscribe(() => {
