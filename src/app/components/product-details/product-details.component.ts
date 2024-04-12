@@ -16,6 +16,7 @@ import { AppStateService } from '../../services/app-state.service';
 export class ProductDetailsComponent {
   productId!: number;
   productDetails!: Product;
+  private language = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +75,9 @@ export class ProductDetailsComponent {
     if (diffDays < 30) {
       const jourKey = this.translateService.translate('jour');
       const pluralSuffix = this.shouldAddPlural(diffDays);
+      if (this.language === 'ar'){
+        return `${diffDays} ${pluralSuffix}`;
+      }
       return `${diffDays} ${jourKey}${pluralSuffix}`;
     }
   
@@ -84,9 +88,9 @@ export class ProductDetailsComponent {
 }
 
 shouldAddPlural(value: number): string {
-    const language = this.appState.userCurrentLanguage;
-    if (language === 'ar') {
-        return value > 1 ? '' : '';
+    this.language = this.appState.userCurrentLanguage;
+    if (this.language === 'ar') {
+        return value > 1 ? 'أيام' : 'يوم';
     } else {
         return value > 1 ? 's' : '';
     }
