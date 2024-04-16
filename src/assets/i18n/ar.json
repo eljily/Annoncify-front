@@ -25,8 +25,8 @@
    "Ajouter votre Annonce Gratuit!!": "أضف إعلانك مجانًا!!",
   "Nom du produit": "اسم المنتج",
   "Description": "الوصف",
-  "Prix en mru": "السعر بالموريتاني (MRU)",
-  "MRU": "موريتاني",
+  "Prix en mru": "السعر بالعملة الجديدة",
+  "MRU": "MRU",
   "Categorie": "الفئة",
   "Select category": "اختر الفئة",
   "Sous Categorie": "الفئة الفرعية",
@@ -69,7 +69,10 @@
       "Clothing": "الملابس",
       "Shoes": "الأحذية",
       "Bags & Luggage": "الحقائب والأمتعة",
-      "Watches & Jewelry": "الساعات والمجوهرات"
+      "Watches & Jewelry": "الساعات والمجوهرات",
+
+      "Vendor Details": "معلومات البائع"
+      
   
   
   

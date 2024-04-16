@@ -70,8 +70,9 @@ export class AddProductComponent implements OnInit {
   }
   
   clearForm() {
-    this.product = {};
-    this.images = [];
+    console.log(this.product)
+    // this.product = {};
+    // this.images = [];
   }
   
   onFileSelect(event: any) {

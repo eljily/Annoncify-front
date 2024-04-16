@@ -21,8 +21,8 @@ export class ProductDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
-    public translateService:TranslationService,
-    private appState : AppStateService
+    public translateService: TranslationService,
+    private appState: AppStateService
   ) { }
 
   ngOnInit() {
@@ -52,48 +52,48 @@ export class ProductDetailsComponent {
     const date = new Date(dateString);
     const diffMilliseconds = currentDate.getTime() - date.getTime();
     const diffSeconds = Math.floor(diffMilliseconds / 1000);
-  
+
     if (diffSeconds < 60) {
       return `${diffSeconds} ${this.translateService.translate('secondes')}`;
     }
-  
+
     const diffMinutes = Math.floor(diffSeconds / 60);
     if (diffMinutes < 60) {
       const minuteKey = this.translateService.translate('minute');
       const pluralSuffix = this.shouldAddPlural(diffMinutes);
       return `${diffMinutes} ${minuteKey}${pluralSuffix}`;
     }
-  
+
     const diffHours = Math.floor(diffMinutes / 60);
     if (diffHours < 24) {
       const heureKey = this.translateService.translate('heure');
       const pluralSuffix = this.shouldAddPlural(diffHours);
       return `${diffHours} ${heureKey}${pluralSuffix}`;
     }
-  
+
     const diffDays = Math.floor(diffHours / 24);
     if (diffDays < 30) {
       const jourKey = this.translateService.translate('jour');
       const pluralSuffix = this.shouldAddPlural(diffDays);
       return `${diffDays} ${jourKey}${pluralSuffix}`;
     }
-  
+
     const diffMonths = Math.floor(diffDays / 30);
     const moisKey = this.translateService.translate('mois');
     const pluralSuffix = this.shouldAddPlural(diffMonths);
     return `${diffMonths} ${moisKey} ${pluralSuffix}`;
-}
+  }
 
-shouldAddPlural(value: number): string {
+  shouldAddPlural(value: number): string {
     this.language = this.appState.userCurrentLanguage;
     if (this.language === 'ar') {
-        return value > 1 ? '' : '';
+      return value > 1 ? '' : '';
     } else {
-        return value > 1 ? 's' : '';
+      return value > 1 ? 's' : '';
     }
-}
+  }
 
-
-
-  
+  callVendor(phoneNumber: string) {
+    window.open(`tel:${phoneNumber}`, '_system');
+  }
 }

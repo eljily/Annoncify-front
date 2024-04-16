@@ -30,7 +30,7 @@ export class ProductsListComponent implements OnInit {
 
   pagedProducts: Product[] = [];
   currentPage = 1; // Use a separate property for the current page
-  rows = 30;
+  rows = 4;
   totalProducts = 0;
   categoryId!: number;
   isAuthenticated! :boolean;

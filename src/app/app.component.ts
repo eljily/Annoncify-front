@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
     'Accueil': 'pi pi-home',
-    'Home': 'pi pi-home',
+    '': 'pi pi-home',
     'الرئيسية': 'pi pi-home',
     'Login': 'pi pi-sign-in', // Icon for Login
     'Signup': 'pi pi-user-plus' // Icon for Signup
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
         const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
         if (homeCategoryIndex === -1) {
           console.log("----------Home Category----------")
-          const homeCategory: Category = { id: 0, name: this.translationService.translate('Home')||'Home', subCategories: [] };
+          const homeCategory: Category = { id: 0, name: this.translationService.translate('')||'', subCategories: [] };
           this.categories.unshift(homeCategory);
         }
   

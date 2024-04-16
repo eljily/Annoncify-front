@@ -1,24 +1,50 @@
 <div class="product-details" *ngIf="productDetails">
-    <div class="details-container">
-      <div class="product-images">
-        <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
-                    [showIndicators]="true">
-          <ng-template let-image pTemplate="item">
-            <div class="image-container">
-              <img [src]="image?.imageUrl ? image.imageUrl : 'https://www.voursa.com/images/noimage.jpg'"
-                   class="product-image"/>
+  <div class="details-container">
+    <div class="product-images">
+      <!-- Product Images Carousel -->
+      <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
+                  [showIndicators]="true">
+        <ng-template let-image pTemplate="item">
+          <div class="image-container">
+            <img [src]="image?.imageUrl ? image.imageUrl : 'https://www.voursa.com/images/noimage.jpg'"
+                 class="product-image"/>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+    <div class="product-info">
+      <!-- Product Name and Price -->
+      <h1> {{ productDetails.name }}</h1>
+      <div class="price"> {{ productDetails.price }} MRU</div>
+      <!-- Vendor Details Card -->
+      <div class="vendor-details-card">
+        <h3>{{ translateService.translate('Vendor Details') }}</h3>
+        <div class="vendor-details">
+          <div class="vendor-profile">
+            <img [src]="productDetails.vendorDetails.profileUrl ? productDetails.vendorDetails.profileUrl : 'https://www.voursa.com/images/noimage.jpg'"
+                 class="profile-image"/>
+          </div>
+          <div class="vendor-contact">
+            <p>{{ translateService.translate('Name') }}: {{ productDetails.vendorDetails.name }}</p>
+            <div class="phone-number">
+              <span (click)="callVendor(productDetails.vendorDetails.phoneNumber)">
+                <i class="pi pi-phone" aria-hidden="true"></i> {{ productDetails.vendorDetails.phoneNumber }}
+              </span>
             </div>
-          </ng-template>
-        </p-carousel>
-      </div>
-      <div class="product-info">
-        <h1> {{ productDetails.name }}</h1>
-        <div class="price"> {{ productDetails.price }} MRU</div>
-        <div class="info-details">
-          <h5 style="color: black;">{{ translateService.translate('Depuis') }} :{{ getRelativeTime(productDetails.createDate) }} </h5>
-          <h5>{{ translateService.translate('Vue') }} :{{ productDetails.hit }} </h5>
-          <p class="product-description" style="color: black;"><br>{{ productDetails.description }}</p>
+            <div class="whatsapp-number">
+              <a [href]="'https://wa.me/' + productDetails.vendorDetails.whatsappNumber">
+                <i class="pi pi-whatsapp" aria-hidden="false"></i> {{ productDetails.vendorDetails.whatsappNumber || '36537673' }}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- Additional Product Information -->
+      <div class="info-details">
+        <h5 style="color: black;">{{ translateService.translate('Depuis') }}:{{ getRelativeTime(productDetails.createDate) }} </h5>
+        <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }} </h5>
+        <p class="product-description" style="color: black;"><br>{{ productDetails.description }}</p>
+      </div>
     </div>
+  </div>
 </div>
