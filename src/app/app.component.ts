@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
         const homeCategoryIndex = this.categories.findIndex(category => category.name === 'Home');
         if (homeCategoryIndex === -1) {
           console.log("----------Home Category----------")
-          const homeCategory: Category = { id: 0, name: this.translationService.translate('Accueil'), subCategories: [] };
+          const homeCategory: Category = { id: 0, name: this.translationService.translate('Home')||'Home', subCategories: [] };
           this.categories.unshift(homeCategory);
         }
   
@@ -80,11 +80,11 @@ export class AppComponent implements OnInit {
             routerLink = ['/products', 0]; // For "Home" category, set routerLink to navigate to ID 0
           }
           const subMenuItems: MenuItem[] = category.subCategories.map((subCategory: SubCategory) => ({
-            label: subCategory.name,
+            label: this.translationService.translate(subCategory.name), // Translate subcategory name
             routerLink: ['/products', subCategory.id]
           }));
           return {
-            label: category.name && category.name.trim() ? category.name : '',
+            label: this.translationService.translate(category.name && category.name.trim() ? category.name : ''), // Translate category name
             icon: this.categoryIconMappings[category.name],
             items: subMenuItems,
             routerLink: routerLink // Assign routerLink to the menu item
@@ -121,7 +121,7 @@ export class AppComponent implements OnInit {
         } else {
           this.items.push(
             { label: this.translationService.translate('Login'), icon: 'pi pi-sign-in', routerLink: ['/login'] },
-            { label: this.translationService.translate('Signup'), icon: 'pi pi-user-plus', routerLink: ['/signup'] }
+            // { label: this.translationService.translate('Signup'), icon: 'pi pi-user-plus', routerLink: ['/signup'] }
           );
         }
       },
@@ -130,6 +130,7 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  
 
   changeLanguage(language: string) {
     // Set the language in the translation service

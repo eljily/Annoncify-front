@@ -1,7 +1,7 @@
 {
     "About Us": "About Us",
     "eljily sidibrahim": "eljily sidibrahim",
-    "Accueil": "Home",
+    "Home": "Home",
     "Unnamed Category": "Unnamed Category",
     "English": "English",
     "Arabic": "Arabic",
@@ -50,4 +50,28 @@
   "Contactez-nous": "Contact Us",
   "Si vous avez des questions, des suggestions ou des commentaires, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !": "If you have any questions, suggestions or comments, feel free to contact us. We are here to help you!",
   "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>": "Phone: +222 36537673  <a href=\"/contact-us\">or click here.</a>"
-    }
+  
+    ,"Real Estate": "Real Estate",
+    "Vehicles": "Vehicles",
+    "Electronics": "Electronics",
+    "Fashion & Accessories": "Fashion & Accessories",
+    "Apartments & Flats": "Apartments & Flats",
+    "Houses & Villas": "Houses & Villas",
+    "Commercial Spaces": "Commercial Spaces",
+    "Land & Plots": "Land & Plots",
+    "Cars": "Cars",
+    "Motorcycles": "Motorcycles",
+    "Trucks & Commercial Vehicles": "Trucks & Commercial Vehicles",
+    "Boats & Watercraft": "Boats & Watercraft",
+    "Mobile Phones & Tablets": "Mobile Phones & Tablets",
+    "Computers & Laptops": "Computers & Laptops",
+    "TVs & Home Theater Systems": "TVs & Home Theater Systems",
+    "Cameras & Photography Equipment": "Cameras & Photography Equipment",
+    "Clothing": "Clothing",
+    "Shoes": "Shoes",
+    "Bags & Luggage": "Bags & Luggage",
+    "Watches & Jewelry": "Watches & Jewelry",
+    "Other": "Other"
+
+
+}

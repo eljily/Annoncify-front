@@ -75,9 +75,6 @@ export class ProductDetailsComponent {
     if (diffDays < 30) {
       const jourKey = this.translateService.translate('jour');
       const pluralSuffix = this.shouldAddPlural(diffDays);
-      if (this.language === 'ar'){
-        return `${diffDays} ${pluralSuffix}`;
-      }
       return `${diffDays} ${jourKey}${pluralSuffix}`;
     }
   
@@ -90,7 +87,7 @@ export class ProductDetailsComponent {
 shouldAddPlural(value: number): string {
     this.language = this.appState.userCurrentLanguage;
     if (this.language === 'ar') {
-        return value > 1 ? 'أيام' : 'يوم';
+        return value > 1 ? '' : '';
     } else {
         return value > 1 ? 's' : '';
     }

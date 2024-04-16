@@ -18,16 +18,16 @@
     </div>
     <div class="form-group">
       <label for="category">{{ translationService.translate('Categorie') }}</label>
-      <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (change)="onCategoryChange(product.category)">
+      <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (ngModelChange)="onCategoryChange(product.category)">
         <option value="" disabled selected>{{ translationService.translate('Select category') }}</option>
-        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+        <option *ngFor="let category of categories" [value]="category.name">{{ this.translationService.translate(category.name) }}</option>
       </select>
     </div>    
     <div class="form-group">
       <label for="subcategory">{{ translationService.translate('Sous Categorie') }}</label>
       <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
         <option value="" disabled selected>{{ translationService.translate('Select subcategory') }}</option>
-        <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</option>
+        <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ this.translationService.translate(subcategory.name) }}</option>
       </select>
     </div>
     <div class="form-group">

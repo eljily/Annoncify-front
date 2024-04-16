@@ -12,12 +12,12 @@
         </p-carousel>
       </div>
       <div class="product-info">
-        <h1>{{ translateService.translate('Nom') }} {{ productDetails.name }}</h1>
-        <div class="price">{{ translateService.translate('Prix') }} {{ productDetails.price }} MRU</div>
+        <h1> {{ productDetails.name }}</h1>
+        <div class="price"> {{ productDetails.price }} MRU</div>
         <div class="info-details">
           <h5 style="color: black;">{{ translateService.translate('Depuis') }} :{{ getRelativeTime(productDetails.createDate) }} </h5>
           <h5>{{ translateService.translate('Vue') }} :{{ productDetails.hit }} </h5>
-          <p class="product-description">{{ translateService.translate('Description') }}<br>{{ productDetails.description }}</p>
+          <p class="product-description" style="color: black;"><br>{{ productDetails.description }}</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 {
     "About Us": "من نحن",
     "eljily sidibrahim": "الجيلي سيدي إبراهيم",
-    "Accueil": "الرئيسية",
+    "Home": "الرئيسية",
   "Unnamed Category": "تصنيف غير مسمى",
   "English": "الإنجليزية",
   "Arabic": "العربية",
@@ -47,7 +47,30 @@
     "Notre mission est de connecter les vendeurs avec les acheteurs potentiels de manière conviviale et efficace. Nous visons à rendre le processus de publicité et de recherche de produits facile et pratique pour tout le monde.": "مهمتنا هي ربط البائعين بالمشترين المحتملين بطريقة ودية وفعالة. نهدف إلى جعل عملية الإعلان والبحث عن المنتجات سهلة ومريحة للجميع.",
     "Contactez-nous": "اتصل بنا",
     "Si vous avez des questions, des suggestions ou des commentaires, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !": "إذا كان لديك أي أسئلة أو اقتراحات أو تعليقات، لا تتردد في الاتصال بنا. نحن هنا لمساعدتك!",
-    "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>": "الهاتف: 36537673 أو<a href=\"/contact-us\"> انقر هنا</a>"
+    "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>": "الهاتف: 36537673 أو<a href=\"/contact-us\"> انقر هنا</a>",
+
+      "Real Estate": "العقارات",
+      "Vehicles": "المركبات",
+      "Electronics": "الإلكترونيات",
+      "Fashion & Accessories": "الأزياء والإكسسوارات",
+      "Other": "آخر",
+      "Apartments & Flats": "الشقق والشقق",
+      "Houses & Villas": "البيوت والفيلات",
+      "Commercial Spaces": "المساحات التجارية",
+      "Land & Plots": "الأراضي والقطع الأرضية",
+      "Cars": "السيارات",
+      "Motorcycles": "الدراجات النارية",
+      "Trucks & Commercial Vehicles": "الشاحنات والمركبات التجارية",
+      "Boats & Watercraft": "القوارب والمراكب البحرية",
+      "Mobile Phones & Tablets": "الهواتف المحمولة والأجهزة اللوحية",
+      "Computers & Laptops": "الحواسيب والكمبيوترات المحمولة",
+      "TVs & Home Theater Systems": "التلفزيونات وأنظمة المسرح المنزلي",
+      "Cameras & Photography Equipment": "الكاميرات ومعدات التصوير الفوتوغرافي",
+      "Clothing": "الملابس",
+      "Shoes": "الأحذية",
+      "Bags & Luggage": "الحقائب والأمتعة",
+      "Watches & Jewelry": "الساعات والمجوهرات"
+  
   
   
   }

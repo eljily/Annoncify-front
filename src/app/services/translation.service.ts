@@ -31,6 +31,9 @@ export class TranslationService {
     }
 
     public translate(key: string): string {
+        console.log('Fetching translation for key:', key);
+        console.log('Current language:', this.currentLanguage);
+        console.log('Translations:', this.translations); 
         // Translate the given key to the current language
         const translation = this.translations[this.currentLanguageSubject.value];
         return translation ? translation[key] : key;

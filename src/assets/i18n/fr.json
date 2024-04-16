@@ -1,7 +1,7 @@
 {
     "About Us": "À propos de nous",
     "eljily sidibrahim": "eljily sidibrahim",
-    "Accueil": "Accueil",
+    "Home": "Accueil",
     "Unnamed Category": "Catégorie non nommée",
     "English": "Anglais",
     "Arabic": "Arabe",
@@ -49,6 +49,29 @@
   "Notre mission est de connecter les vendeurs avec les acheteurs potentiels de manière conviviale et efficace. Nous visons à rendre le processus de publicité et de recherche de produits facile et pratique pour tout le monde.": "Notre mission est de connecter les vendeurs avec les acheteurs potentiels de manière conviviale et efficace. Nous visons à rendre le processus de publicité et de recherche de produits facile et pratique pour tout le monde.",
   "Contactez-nous": "Contactez-nous",
   "Si vous avez des questions, des suggestions ou des commentaires, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !": "Si vous avez des questions, des suggestions ou des commentaires, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !",
-  "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>": "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>"
+  "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>": "Téléphone : +222 36537673  <a href=\"/contact-us\">ou cliquer ici.</a>",
+
+    "Real Estate": "Immobilier",
+    "Vehicles": "Véhicules",
+    "Electronics": "Électronique",
+    "Fashion & Accessories": "Mode & Accessoires",
+    "Other": "Autre",
+    "Apartments & Flats": "Appartements & Flats",
+    "Houses & Villas": "Maisons & Villas",
+    "Commercial Spaces": "Espaces commerciaux",
+    "Land & Plots": "Terrain & Parcelles",
+    "Cars": "Voitures",
+    "Motorcycles": "Motocyclettes",
+    "Trucks & Commercial Vehicles": "Camions & Véhicules commerciaux",
+    "Boats & Watercraft": "Bateaux & Embarcations",
+    "Mobile Phones & Tablets": "Téléphones mobiles & Tablettes",
+    "Computers & Laptops": "Ordinateurs & Ordinateurs portables",
+    "TVs & Home Theater Systems": "Téléviseurs & Systèmes home cinéma",
+    "Cameras & Photography Equipment": "Appareils photo & Équipement de photographie",
+    "Clothing": "Vêtements",
+    "Shoes": "Chaussures",
+    "Bags & Luggage": "Sacs & Bagages",
+    "Watches & Jewelry": "Montres & Bijoux"
+
 
 }
