@@ -7,26 +7,25 @@
 
 <div class="card">
   <button class="profile-button" (click)="redirectToAddProduct()">
-    <i class="pi pi-plus"></i> {{this.translationService.translate('Publier Votre Annonce')}}
+    <i class="pi pi-plus"></i> {{ this.translationService.translate('Publier Votre Annonce') }}
   </button>
   <div class="product-grid">
     <div class="card-item" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
       <div class="product-details">
         <div class="image-container">
+          <div class="price">{{ item.price }} MRU</div> <!-- Move price display here -->
           <img class="fixed-size-image" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'https://www.voursa.com/images/noimage.jpg'" [alt]="item.name" />
           <div class="overlay">
             <div class="name-and-price">
               <div class="product-name">{{ item.name }}</div>
-              <div class="price">{{ item.price }} MRU</div>
             </div>
-            <div class="views">
+            <!-- <div class="views">
               <i class="pi pi-eye"></i> {{ item.hit }}
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<p-paginator [rows]="rows" [totalRecords]="totalProducts" (onPageChange)="onPageChange($event)" [pageLinkSize]="3"></p-paginator>
+<p-paginator [rows]="rows" [totalRecords]="totalProducts" (onPageChange)="onPageChange($event)" [pageLinkSize]="6"></p-paginator>
