@@ -25,16 +25,22 @@ export class AppComponent implements OnInit {
   items: MenuItem[] = [];
   categories: Category[] = [];
   categoryIconMappings: { [key: string]: string } = {
-    'Electronics': 'pi pi-mobile',
+    'Electronics': 'fas fa-laptop',
     'Telephones': 'pi pi-mobile',
     'Computers': 'pi pi-desktop',
     'Tablets': 'pi pi-tablet',
     'Accessories': 'pi pi-clock',
     'Accueil': 'pi pi-home',
-    '': 'pi pi-home',
+    '': 'fa fa-home',
     'الرئيسية': 'pi pi-home',
     'Login': 'pi pi-sign-in', // Icon for Login
-    'Signup': 'pi pi-user-plus' // Icon for Signup
+    'Signup': 'pi pi-user-plus',
+    
+    'Vehicles': 'fa fa-car',
+    'Fashion & Accessories': 'fa fa-tshirt',
+    'Real Estate': 'fa fa-building',
+    'Other': 'fa fa-cube'
+
   };
 
   constructor(private categoryService: CategoryService,
@@ -97,9 +103,9 @@ export class AppComponent implements OnInit {
             label: '',
             icon: 'pi pi-globe',
             items: [
-              { label: this.translationService.translate('English'), icon: 'pi pi-flag', command: () => this.changeLanguage('en') },
-              { label: this.translationService.translate('Arabic'), icon: 'pi pi-flag', command: () => this.changeLanguage('ar') },
-              { label: this.translationService.translate('French'), icon: 'pi pi-flag', command: () => this.changeLanguage('fr') }
+              { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
+              { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },
+              { label: this.translationService.translate('French'), icon: 'fa fa-flag', command: () => this.changeLanguage('fr') }
             ]
           }
         );

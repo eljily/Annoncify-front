@@ -2,15 +2,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../model/Product';
+import { environment } from '../../environement/environement';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  private api = "http://localhost:8081/api";
+  private api = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.api = environment.apiUrl }
 
   public getAllProducts() :Observable<any> {
     return this.http.get(`${this.api}/products`);
