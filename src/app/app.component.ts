@@ -119,7 +119,7 @@ export class AppComponent implements OnInit {
               items: [
                 { label: this.translationService.translate('Gérer mes annonces'), icon: 'pi pi-list', routerLink: ['/manage-ads'] },
                 { label: this.translationService.translate('Modifier les informations'), icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
-                { label: this.translationService.translate('Logout'), icon: 'pi pi-power-off', command: () => this.logout() } 
+                { label: this.translationService.translate('Logout'), icon: 'fa fa-sign-out', command: () => this.logout() } 
               ]
             },
             
