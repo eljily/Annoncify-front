@@ -71,8 +71,12 @@
       "Bags & Luggage": "الحقائب والأمتعة",
       "Watches & Jewelry": "الساعات والمجوهرات",
 
-      "Vendor Details": "معلومات البائع"
-
+      "Vendor Details": "معلومات البائع",
+     
+"Bad Credentials":" كلمة مرور غير صحيحة",
+"All fields are required":"جميع الحقول يجب أن تكون مملوءة",
+"Retype Password":"أعد كتابة كلمة المرور",
+"Passwords do not match":"كلمات المرور غير متطابقة"
   
   
   }

@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
         this.items.push(
           {
             label: '',
-            icon: 'pi pi-globe',
+            icon: 'fa fa-globe',
             items: [
               { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
               { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },

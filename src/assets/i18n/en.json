@@ -72,7 +72,12 @@
     "Bags & Luggage": "Bags & Luggage",
     "Watches & Jewelry": "Watches & Jewelry",
     "Other": "Other",
-    "Vendor Details": "Vendor Details"
+    "Vendor Details": "Vendor Details",
+
+    "Bad Credentials":"Wrong Password!!",
+    "All fields are required":"All fields are required",
+    "Retype Password":"Retype Password",
+    "Passwords do not match":"Passwords do not match"
 
 
 }

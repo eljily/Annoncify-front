@@ -72,7 +72,11 @@
     "Shoes": "Chaussures",
     "Bags & Luggage": "Sacs & Bagages",
     "Watches & Jewelry": "Montres & Bijoux",
-    "Vendor Details": "Détails du vendeur"
+    "Vendor Details": "Détails du vendeur",
+    "Bad Credentials":"Mot de passe incorrect!!",
+    "All fields are required":"Tous les champs sont requis",
+    "Retype Password":"Resaisir le mot de passe",
+    "Passwords do not match":"Les mots de passe ne correspondent pas"
 
 
 }
