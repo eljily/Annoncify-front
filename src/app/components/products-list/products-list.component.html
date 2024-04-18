@@ -13,16 +13,16 @@
     <div class="card-item" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
       <div class="product-details">
         <div class="image-container">
-          <div class="price">{{ item.price }} MRU</div> <!-- Move price display here -->
+          <div class="price">{{ item.price }} MRU</div>
           <img class="fixed-size-image" [src]="item.images && item.images.length > 0 ? item.images[0].imageUrl : 'https://www.voursa.com/images/noimage.jpg'" [alt]="item.name" />
           <div class="overlay">
-            <div class="name-and-price">
+            <div class="name-and-localisation">
               <div class="product-name">{{ item.name }}</div>
+              <div class="localisation">
+                <i class="pi pi-map-marker localisation">{{item.id+"nouakchott,Arafat"}}</i>
+              </div>
             </div>
-            <!-- <div class="views">
-              <i class="pi pi-eye"></i> {{ item.hit }}
-            </div> -->
-          </div>
+          </div>          
         </div>
       </div>
     </div>

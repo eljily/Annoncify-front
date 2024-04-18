@@ -15,18 +15,18 @@ import { AppStateService } from '../../services/app-state.service';
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule, FieldsetModule, FileUploadModule,CommonModule],
+  imports: [FormsModule, FieldsetModule, FileUploadModule, CommonModule],
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.scss'],
   providers: [MessageService]
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private productService: ProductsService, 
-    private categoryService: CategoryService, 
+  constructor(private productService: ProductsService,
+    private categoryService: CategoryService,
     private router: Router,
-     private messageService: MessageService,
-     public translationService:TranslationService,
+    private messageService: MessageService,
+    public translationService: TranslationService,
     public appStateService: AppStateService) { }
 
   product: any = {};
@@ -34,11 +34,8 @@ export class AddProductComponent implements OnInit {
   msgs: any[] = [];
   categories: Category[] = [];
   subcategories: SubCategory[] = [];
-  errMssg : any;
-  addedMssg : any;
+
   ngOnInit() {
-     this.errMssg = this.translationService.translate("All fields are required");
-     this.addedMssg =  this.translationService.translate("Annonce published successfully");
     console.warn(this.product)
     this.categoryService.getAllCategories().subscribe(
       (response: any) => {
@@ -52,13 +49,13 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn("submitting .....");
+    console.warn("submitting .....")
     if (!this.product.name || !this.product.description || !this.product.price || !this.product.category || !this.product.subcategory) {
-      this.messageService.add({severity:'error', summary:'', detail:this.errMssg, life: 2500});
+      const errMssg = this.translationService.translate("All fields are required")
+      this.messageService.add({ severity: 'error', summary: '', detail: errMssg, life: 2500 });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      this.appStateService.setLoading(true); // Set loading state to true
-  
+      this.appStateService.setLoading(true); // Show loader
       const formData = new FormData();
       formData.append('name', this.product.name);
       formData.append('description', this.product.description);
@@ -68,32 +65,34 @@ export class AddProductComponent implements OnInit {
       for (let i = 0; i < this.images.length; i++) {
         formData.append('images', this.images[i]);
       }
-  
+      console.log(this.product)
       this.productService.addProduct(formData).subscribe(
         response => {
           console.log('Product added successfully', response);
-          this.messageService.add({severity:'success', summary:'Success',detail:this.addedMssg ,life: 3000});
           this.clearForm();
+          const addedMessage = this.translationService.translate("Annonce published successfully");
+          this.messageService.add({ severity: 'success', summary: '', detail: addedMessage, life: 9000 });
         },
         error => {
           console.error('Error adding product', error);
           // Handle error
-        },
-        () => {
-          this.appStateService.setLoading(false); // Set loading state to false when request is complete
         }
-      );
+      ).add(() => {
+        this.appStateService.setLoading(false); // Hide loader after request completes
+      });
     }
   }
-  
   
   clearForm() {
     console.log(this.product)
     this.product = {};
     this.images = [];
+    this.router.navigateByUrl("/products/0")
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    const addedMessage = this.translationService.translate("Annonce published successfully");
+          this.messageService.add({ severity: 'success', summary: '', detail: addedMessage, life: 7000 });
   }
-  
+
   onFileSelect(event: any) {
     const files: File[] = event.files;
     for (let i = 0; i < files.length; i++) {

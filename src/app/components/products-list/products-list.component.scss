@@ -33,10 +33,11 @@
   margin-bottom: 20px;
 
   @media screen and (max-width: 767px) {
-    flex-basis: calc(100% - 20px);
-    max-width: calc(100% - 20px);
+    flex-basis: calc(50% - 20px); // Change to 50% for two items per row
+    max-width: calc(50% - 20px); // Change to 50% for two items per row
   }
 }
+
 
 .product-details {
   background-color: #ebeae8;
@@ -87,12 +88,22 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    
 
-    .product-name {
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+  }
+  .product-name {
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%; /* Adjust the maximum width as needed */
+  }
+  
+  .localisation {
+    flex-grow: 4;
+    text-align: left;
   }
 
   .views {
