@@ -1,0 +1,59 @@
+.ad-management-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  
+    .user-profile {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      .profile-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+  
+      .profile-details {
+        h2 {
+          font-size: 20px;
+          margin-bottom: 5px;
+        }
+  
+        p {
+          font-size: 16px;
+          color: #666;
+        }
+      }
+    }
+  
+    .ad-list {
+      width: 100%;
+      
+      .p-datatable {
+        width: 100%;
+  
+        th,
+        td {
+          text-align: left;
+        }
+  
+        button {
+          margin-right: 5px;
+        }
+      }
+    }
+      
+}
+.sorting-green .pi-sort-up,
+.sorting-green .pi-sort-down {
+  color: green;
+}
+.ad-management-container {
+    position: relative;
+  }
+  
+
+  

@@ -100,7 +100,7 @@ export class AppComponent implements OnInit {
         // Add language selection menu item
         this.items.push(
           {
-            label: '',
+            label: this.translationService.translate('Lang'),
             icon: 'fa fa-globe',
             items: [
               { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
@@ -117,8 +117,8 @@ export class AppComponent implements OnInit {
               label: this.translationService.translate('Profile'),
               icon: 'pi pi-user',
               items: [
-                { label: this.translationService.translate('Gérer mes annonces'), icon: 'pi pi-list', routerLink: ['/manage-ads'] },
-                { label: this.translationService.translate('Modifier les informations'), icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
+                { label: this.translationService.translate('Gérer mes annonces'), icon: 'pi pi-list', routerLink: ['/ad-management'] },
+                // { label: this.translationService.translate('Modifier les informations'), icon: 'pi pi-pencil', routerLink: ['/edit-profile']},
                 { label: this.translationService.translate('Logout'), icon: 'fa fa-sign-out', command: () => this.logout() } 
               ]
             },

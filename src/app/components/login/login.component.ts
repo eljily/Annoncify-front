@@ -8,6 +8,7 @@ import { Message, MessageService } from 'primeng/api'; // Import MessageService 
 import { TranslationService } from '../../services/translation.service';
 import { MessagesModule } from 'primeng/messages';
 import { CommonModule } from '@angular/common';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     public translationService: TranslationService,
-    private messageService: MessageService // Add MessageService to constructor
+    private messageService: MessageService, // Add MessageService to constructor,
+    private appState : AppStateService
   ) {}
 
   login() {
@@ -55,6 +57,7 @@ export class LoginComponent {
         console.warn('Login successful:', response);
         localStorage.setItem('token', response.jwt);
         localStorage.setItem('userId', response.userId);
+        this.appState.userId = response.userId;
         this.authService.setAuthenticated(true);
         // Optionally navigate to another page
         this.router.navigate(['/add']);

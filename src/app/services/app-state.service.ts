@@ -6,6 +6,7 @@ import { TranslationService } from './translation.service';
 })
 export class AppStateService {
     userCurrentLanguage: string= '';
+    userId! : number ;
 
     constructor(private translationService: TranslationService) {
         this.translationService.currentLanguage.subscribe(language => {

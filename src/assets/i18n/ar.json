@@ -26,6 +26,7 @@
   "Nom du produit": "اسم المنتج",
   "Description": "الوصف",
   "Prix en mru": "السعر بالعملة الجديدة",
+  "Prix":"السعر",
   "MRU": "MRU",
   "Categorie": "الفئة",
   "Select category": "اختر الفئة",
@@ -76,7 +77,9 @@
 "Bad Credentials":" كلمة مرور غير صحيحة",
 "All fields are required":"جميع الحقول يجب أن تكون مملوءة",
 "Retype Password":"أعد كتابة كلمة المرور",
-"Passwords do not match":"كلمات المرور غير متطابقة"
+"Passwords do not match":"كلمات المرور غير متطابقة",
+"Lang":"لغة"
+
   
   
   }

@@ -42,4 +42,12 @@ export class ProductsService {
     // Make the HTTP POST request with the product data and authorization header
     return this.http.post<any>(`${this.api}/products/addProduct`, product, { headers });
   }
+
+  getProductsByUserId() : Observable<any> {
+    return this.http.get(`${this.api}/products/byUserId`);
+  }
+
+  deleteProductById(productId:number) : Observable<any> {
+    return this.http.delete(`${this.api}/products/${productId}`);
+  }
 }

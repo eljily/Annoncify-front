@@ -54,7 +54,7 @@
     ,"Real Estate": "Real Estate",
     "Vehicles": "Vehicles",
     "Electronics": "Electronics",
-    "Fashion & Accessories": "Fashion & Accessories",
+    "Fashion & Accessories": "Fashion ",
     "Apartments & Flats": "Apartments & Flats",
     "Houses & Villas": "Houses & Villas",
     "Commercial Spaces": "Commercial Spaces",
@@ -77,7 +77,8 @@
     "Bad Credentials":"Wrong Password!!",
     "All fields are required":"All fields are required",
     "Retype Password":"Retype Password",
-    "Passwords do not match":"Passwords do not match"
+    "Passwords do not match":"Passwords do not match",
+    "Lang":"Lang"
 
 
 }

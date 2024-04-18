@@ -1,0 +1,38 @@
+<div class="ad-management-container">
+    <div class="ad-list">
+      <!-- Display ad list here -->
+      <p-table [value]="ads" [paginator]="true" [pageLinks]="3" [rows]="4" [sortMode]="'multiple'">
+        <!-- Enable paginator, specify rows per page, and enable multiple sort -->
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="id" [class.sorting-green]="isColumnSorted('id')">
+              <p-sortIcon field="id"></p-sortIcon>{{this.translationService.translate("ID")}}
+            </th>
+            <th pSortableColumn="name" [class.sorting-green]="isColumnSorted('name')">
+              <p-sortIcon field="name"></p-sortIcon>{{this.translationService.translate("Name")}}
+            </th>
+            <th pSortableColumn="price" [class.sorting-green]="isColumnSorted('price')">
+              <p-sortIcon field="price"></p-sortIcon>{{this.translationService.translate("Prix")}}
+            </th>
+            <!-- <th pSortableColumn="createDate" [class.sorting-green]="isColumnSorted('createDate')">
+              <p-sortIcon field="createDate"></p-sortIcon>Creation Date
+            </th> -->
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ad>
+          <tr>
+            <td>{{ ad.id }}</td> <!-- Display ID -->
+            <td>{{ ad.name }}</td>
+            <td>{{ ad.price }}</td>
+            <!-- <td>{{ ad.createDate | date }}</td> Display Creation Date -->
+            <td>
+              <!-- <button pButton icon="pi pi-pencil" (click)="editAd(ad)"></button> -->
+              <button pButton icon="fa fa-trash" (click)="deleteAd(ad)" class="p-button-danger"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  
