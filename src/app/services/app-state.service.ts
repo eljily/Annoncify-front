@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { TranslationService } from './translation.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppStateService {
-    userCurrentLanguage: string= '';
-    userId! : number ;
+    userCurrentLanguage: string = '';
+    userId!: number;
+    isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); // Add isLoading property
 
     constructor(private translationService: TranslationService) {
         this.translationService.currentLanguage.subscribe(language => {
@@ -14,5 +16,11 @@ export class AppStateService {
         });
     }
 
-    // Other methods and properties of your AppStateService
+    setLoading(value: boolean) {
+        this.isLoading.next(value);
+    }
+
+    get isLoading$() {
+        return this.isLoading.asObservable();
+    }
 }

@@ -32,7 +32,7 @@
   "Select category": "اختر الفئة",
   "Sous Categorie": "الفئة الفرعية",
   "Select subcategory": "اختر الفئة الفرعية",
-  "Images max 2": "صور حد أقصى 2",
+  "Images max 2": "صور",
   "Choisir": "اختر",
   "Publier": "نشر",
   "Depuis": "منذ",
@@ -78,8 +78,9 @@
 "All fields are required":"جميع الحقول يجب أن تكون مملوءة",
 "Retype Password":"أعد كتابة كلمة المرور",
 "Passwords do not match":"كلمات المرور غير متطابقة",
-"Lang":"لغة"
-
+"Lang":"لغة",
+"Annonce published successfully":"تم نشر الإعلان بنجاح",
+"Loading...":"Chargement..."
   
   
   }

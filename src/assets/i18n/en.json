@@ -31,7 +31,7 @@
   "Select category": "Select category",
   "Sous Categorie": "Subcategory",
   "Select subcategory": "Select subcategory",
-  "Images max 2": "Maximum 2 images",
+  "Images max 2": "images",
   "Choisir": "Choose",
   "Publier": "Publish",
   "Nom": "Name",
@@ -78,7 +78,9 @@
     "All fields are required":"All fields are required",
     "Retype Password":"Retype Password",
     "Passwords do not match":"Passwords do not match",
-    "Lang":"Lang"
+    "Lang":"Lang",
+    "Annonce published successfully":"Annonce published successfully",
+    "Loading...":"تحميل..."
 
 
 }

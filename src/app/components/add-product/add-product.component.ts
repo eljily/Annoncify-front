@@ -10,6 +10,7 @@ import { Category } from '../../model/Category';
 import { SubCategory } from '../../model/SubCategory';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'app-add-product',
@@ -25,15 +26,20 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService, 
     private router: Router,
      private messageService: MessageService,
-     public translationService:TranslationService) { }
+     public translationService:TranslationService,
+    public appStateService: AppStateService) { }
 
   product: any = {};
   images: any[] = [];
   msgs: any[] = [];
   categories: Category[] = [];
   subcategories: SubCategory[] = [];
-
+  errMssg : any;
+  addedMssg : any;
   ngOnInit() {
+     this.errMssg = this.translationService.translate("All fields are required");
+     this.addedMssg =  this.translationService.translate("Annonce published successfully");
+    console.warn(this.product)
     this.categoryService.getAllCategories().subscribe(
       (response: any) => {
         console.log(response)
@@ -46,33 +52,46 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    const formData = new FormData();
-    formData.append('name', this.product.name);
-    formData.append('description', this.product.description);
-    formData.append('price', this.product.price);
-    formData.append('category', this.product.category);
-    formData.append('subCategoryId', this.product.subcategory); // Append selected subcategory
-    for (let i = 0; i < this.images.length; i++) {
-      formData.append('images', this.images[i]);
-    }
-    console.log(this.product)
-    this.productService.addProduct(formData).subscribe(
-      response => {
-        console.log('Product added successfully', response);
-        this.messageService.add({severity:'success', summary:'Success', detail:'Product added successfully'});
-        this.clearForm();
-      },
-      error => {
-        console.error('Error adding product', error);
-        // Handle error
+    console.warn("submitting .....");
+    if (!this.product.name || !this.product.description || !this.product.price || !this.product.category || !this.product.subcategory) {
+      this.messageService.add({severity:'error', summary:'', detail:this.errMssg, life: 2500});
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      this.appStateService.setLoading(true); // Set loading state to true
+  
+      const formData = new FormData();
+      formData.append('name', this.product.name);
+      formData.append('description', this.product.description);
+      formData.append('price', this.product.price);
+      formData.append('category', this.product.category);
+      formData.append('subCategoryId', this.product.subcategory); // Append selected subcategory
+      for (let i = 0; i < this.images.length; i++) {
+        formData.append('images', this.images[i]);
       }
-    );
+  
+      this.productService.addProduct(formData).subscribe(
+        response => {
+          console.log('Product added successfully', response);
+          this.messageService.add({severity:'success', summary:'Success',detail:this.addedMssg ,life: 3000});
+          this.clearForm();
+        },
+        error => {
+          console.error('Error adding product', error);
+          // Handle error
+        },
+        () => {
+          this.appStateService.setLoading(false); // Set loading state to false when request is complete
+        }
+      );
+    }
   }
+  
   
   clearForm() {
     console.log(this.product)
-    // this.product = {};
-    // this.images = [];
+    this.product = {};
+    this.images = [];
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
   onFileSelect(event: any) {

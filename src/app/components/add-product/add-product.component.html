@@ -1,41 +1,50 @@
 <form class="product-form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-  <fieldset class="product-fieldset">
-    <legend>{{ translationService.translate('Ajouter votre Annonce Gratuit!!') }}</legend>
-    <div class="form-group">
-      <label for="name">{{ translationService.translate('Nom du produit') }}</label>
-      <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
+  <div *ngIf="appStateService.isLoading$ | async; else content">
+    <!-- Loader component or loading message -->
+    <!-- For example: -->
+    <div class="loading-spinner">
+      <i class="pi pi-spin pi-spinner"></i> <!-- PrimeNG spinner -->
+      {{ translationService.translate('Loading...') }}
     </div>
-    <div class="form-group">
-      <label for="description">{{ translationService.translate('Description') }}</label>
-      <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
-    </div>
-    <div class="form-group">
-      <label for="price">{{ translationService.translate('Prix en mru') }}</label>
-      <div class="input-group">
-        <span class="input-group-text">{{ translationService.translate('MRU') }}</span>
-        <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
+  </div>
+  <ng-template #content>
+    <p-messages [(value)]="msgs"></p-messages>
+    <fieldset class="product-fieldset">
+      <legend>{{ translationService.translate('Ajouter votre Annonce Gratuit!!') }}</legend>
+      <div class="form-group">
+        <label for="name">{{ translationService.translate('Nom du produit') }}</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="product.name" name="name" required>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="category">{{ translationService.translate('Categorie') }}</label>
-      <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (ngModelChange)="onCategoryChange(product.category)">
-        <option value="" disabled selected>{{ translationService.translate('Select category') }}</option>
-        <option *ngFor="let category of categories" [value]="category.name">{{ this.translationService.translate(category.name) }}</option>
-      </select>
-    </div>    
-    <div class="form-group">
-      <label for="subcategory">{{ translationService.translate('Sous Categorie') }}</label>
-      <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
-        <option value="" disabled selected>{{ translationService.translate('Select subcategory') }}</option>
-        <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ this.translationService.translate(subcategory.name) }}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="images">{{ translationService.translate('Images max 2') }}</label>
-      <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="{{ translationService.translate('Choisir') }}" accept="image/*" [auto]="true" styleClass=" p-button-success"></p-fileUpload>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!product.name || !product.description || !product.price || !product.category || !product.subcategory">{{ translationService.translate('Publier') }}</button>
-  </fieldset>
+      <div class="form-group">
+        <label for="description">{{ translationService.translate('Description') }}</label>
+        <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">{{ translationService.translate('Prix en mru') }}</label>
+        <div class="input-group">
+          <span class="input-group-text">{{ translationService.translate('MRU') }}</span>
+          <input type="number" id="price" class="form-control" [(ngModel)]="product.price" name="price" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">{{ translationService.translate('Categorie') }}</label>
+        <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (ngModelChange)="onCategoryChange(product.category)">
+          <option value="" disabled selected>{{ translationService.translate('Select category') }}</option>
+          <option *ngFor="let category of categories" [value]="category.name">{{ this.translationService.translate(category.name) }}</option>
+        </select>
+      </div>    
+      <div class="form-group">
+        <label for="subcategory">{{ translationService.translate('Sous Categorie') }}</label>
+        <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
+          <option value="" disabled selected>{{ translationService.translate('Select subcategory') }}</option>
+          <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ this.translationService.translate(subcategory.name) }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="images">{{ translationService.translate('Images max 2') }}</label>
+        <p-fileUpload name="images" [multiple]="true" (onSelect)="onFileSelect($event)" chooseLabel="{{ translationService.translate('Choisir') }}" accept="image/*" [auto]="true" styleClass=" p-button-success"></p-fileUpload>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="appStateService.isLoading$ | async">{{ translationService.translate('Publier') }}</button>
+    </fieldset>
+  </ng-template>
 </form>
-
-<p-messages [(value)]="msgs"></p-messages>
