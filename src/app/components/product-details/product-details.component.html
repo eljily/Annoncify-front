@@ -23,7 +23,7 @@
     <!-- Product Info -->
     <div class="product-info">
       <h1>{{ productDetails.name }}</h1>
-      <div class="price">{{ productDetails.price }} MRU</div>
+      <div class="price"><strong>{{ productDetails.price }} MRU</strong></div>
       <div class="vendor-details-card">
         <h3>{{ translateService.translate('Vendor Details') }}</h3>
         <div class="vendor-details">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="info-details">
-        <h5>{{ translateService.translate('Depuis') }}: {{ getRelativeTime(productDetails.createDate) }}</h5>
+        <h5>{{ translateService.translate('Depuis') }} {{ getRelativeTime(productDetails.createDate) }}</h5>
         <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }}</h5>
         <p class="product-description"><strong>{{ productDetails.description }}</strong></p>
         <!-- <p><strong>{{ translateService.translate('Category') }}:</strong> {{ productDetails.id }}</p>

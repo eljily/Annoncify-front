@@ -24,31 +24,36 @@
         .main-product-image {
           width: 100%;
           max-height: 400px;
-          object-fit:fill;
+          object-fit: fill;
           border-radius: 8px;
         }
 
         .share-icon {
           position:absolute;
-          top: 5px;
+          top: 10px;
           right: 10px;
           color: #ff8c00;
-          font-size: 30px;
+          font-size: 10px;
           cursor: pointer;
           z-index: 4;
+          background-color: white; /* Add white background */
+          border-radius: 45%; /* Add border-radius for circle */
+          padding: 10px; /* Adjust padding */
         }
 
         .prev, .next {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background-color: rgba(255, 255, 255, 0.5);
+          background-color: white; /* Add white background */
           border: none;
           cursor: pointer;
           font-size: 18px;
           color: #f0a70a;
           padding: 10px;
           z-index: 1;
+          border-radius: 8px; /* Add border-radius for square */
+          transition: background-color 0.3s ease-in-out;
 
           &:hover {
             background-color: rgba(255, 255, 255, 0.8);
@@ -93,16 +98,25 @@
       h1 {
         font-size: 24px;
         margin-bottom: 10px;
+        background-color: #fb9339; /* Added yellow background for the name */
+        padding: 10px;
+        border-radius: 8px;
       }
 
       .price {
-        font-size: 20px;
+        font-size: 25px;
+        padding: 10px;
         font-weight: bold;
-        color: #fb9339;
+        background-color: #f0a70a;
+        color: #ffffff;
       }
 
       .vendor-details-card {
         margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
 
         h3 {
           font-size: 20px;
@@ -128,12 +142,18 @@
             flex: 1;
 
             p {
+              
               margin: 5px 0;
             }
 
             .phone-number,
             .whatsapp-number {
               margin-top: 10px;
+              background-color:rgb(12, 157, 12);
+              color: white;
+              font-size: 18px;
+              padding: 8px 15px;
+              border-radius: 8px;
 
               i {
                 margin-right: 5px;
@@ -143,14 +163,11 @@
                 display: flex;
                 align-items: center;
                 text-decoration: none;
-                color: #333;
-                padding: 5px 10px;
-                border-radius: 5px;
+                color: white;
                 transition: background-color 0.3s ease-in-out;
 
                 &:hover {
-                  background-color: green;
-                  color: #fff;
+                  background-color: rgb(12, 157, 12);
                   cursor: pointer;
                 }
               }
