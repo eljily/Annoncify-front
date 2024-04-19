@@ -1,35 +1,35 @@
 <div class="product-details" *ngIf="productDetails">
   <div class="details-container">
+    <!-- Product Images -->
     <div class="product-images">
-      <!-- Product Images Carousel -->
-      <p-carousel [value]="productDetails.images" [numVisible]="1" [numScroll]="1" [circular]="true"
-                  [showIndicators]="true">
-        <ng-template let-image pTemplate="item">
-          <div class="image-container">
-            <img [src]="image?.imageUrl ? image.imageUrl : 'https://www.voursa.com/images/noimage.jpg'"
-                 class="product-image"/>
-          </div>
-        </ng-template>
-      </p-carousel>
+      <!-- Main Product Image with Navigation Arrows -->
+      <div class="main-image-container">
+        <img [src]="fullScreenImageUrl" class="main-product-image" />
+        <button class="prev" (click)="prevImage()">&#10094;</button>
+        <button class="next" (click)="nextImage()">&#10095;</button>
+      </div>
+      <!-- Gallery of Small Product Images -->
+      <div class="image-gallery">
+        <div class="image-thumb" *ngFor="let image of productDetails.images">
+          <img [src]="image.imageUrl" (click)="showFullScreenImage(image.imageUrl)" />
+        </div>
+      </div>
     </div>
+
+    <!-- Product Info -->
     <div class="product-info">
-      <!-- Product Name and Price -->
-      <h1> {{ productDetails.name }}</h1>
-      <div class="price"> {{ productDetails.price }} MRU</div>
-      <!-- Vendor Details Card -->
+      <h1>{{ productDetails.name }}</h1>
+      <div class="price">{{ productDetails.price }} MRU</div>
       <div class="vendor-details-card">
         <h3>{{ translateService.translate('Vendor Details') }}</h3>
         <div class="vendor-details">
           <div class="vendor-profile">
-            <img [src]="productDetails.vendorDetails.profileUrl ? productDetails.vendorDetails.profileUrl : 'https://www.voursa.com/images/noimage.jpg'"
-                 class="profile-image"/>
+            <img [src]="productDetails.vendorDetails.profileUrl ? productDetails.vendorDetails.profileUrl : 'https://www.voursa.com/images/noimage.jpg'" class="profile-image"/>
           </div>
           <div class="vendor-contact">
             <p>{{ translateService.translate('Name') }}: {{ productDetails.vendorDetails.name }}</p>
-            <div class="phone-number">
-              <span (click)="callVendor(productDetails.vendorDetails.phoneNumber)">
-                <i class="pi pi-phone" aria-hidden="true"></i> {{ productDetails.vendorDetails.phoneNumber }}
-              </span>
+            <div class="phone-number" (click)="callVendor(productDetails.vendorDetails.phoneNumber)">
+              <i class="pi pi-phone" aria-hidden="true"></i> {{ productDetails.vendorDetails.phoneNumber }}
             </div>
             <div class="whatsapp-number">
               <a [href]="'https://wa.me/' + productDetails.vendorDetails.whatsappNumber">
@@ -39,12 +39,17 @@
           </div>
         </div>
       </div>
-      <!-- Additional Product Information -->
       <div class="info-details">
-        <h5 style="color: black;">{{ translateService.translate('Depuis') }}:{{ getRelativeTime(productDetails.createDate) }} </h5>
-        <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }} </h5>
-        <p class="product-description" style="color: black;"><br>{{ productDetails.description }}</p>
+        <h5>{{ translateService.translate('Depuis') }}: {{ getRelativeTime(productDetails.createDate) }}</h5>
+        <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }}</h5>
+        <p class="product-description">{{ productDetails.description }}</p>
       </div>
     </div>
+  </div>
+
+  <!-- Full Screen Modal -->
+  <div class="modal" *ngIf="showFullScreen">
+    <span class="close" (click)="closeFullScreenImage()">&times;</span>
+    <img [src]="fullScreenImageUrl" class="modal-content" />
   </div>
 </div>

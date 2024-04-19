@@ -11,12 +11,15 @@ import { AppStateService } from '../../services/app-state.service';
   standalone: true,
   imports: [CarouselModule],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.scss'
+  styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent {
   productId!: number;
   productDetails!: Product;
   private language = "";
+  fullScreenImageUrl: string | null = null; // Initialize as nul
+  showFullScreen: boolean = false;
+  imageIndex: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +34,26 @@ export class ProductDetailsComponent {
       this.productId = +params['productId']; // The '+' is used to convert the string to a number
       this.fetchProductDetails();
     });
+  }
+
+  prevImage() {
+    this.imageIndex = (this.imageIndex === 0) ? this.productDetails.images.length - 1 : this.imageIndex - 1;
+    this.fullScreenImageUrl = this.productDetails.images[this.imageIndex].imageUrl;
+  }
+
+  nextImage() {
+    this.imageIndex = (this.imageIndex === this.productDetails.images.length - 1) ? 0 : this.imageIndex + 1;
+    this.fullScreenImageUrl = this.productDetails.images[this.imageIndex].imageUrl;
+  }
+
+  showFullScreenImage(imageUrl: string) {
+    this.showFullScreen = true;
+    this.fullScreenImageUrl = imageUrl;
+  }
+
+  closeFullScreenImage() {
+    this.showFullScreen = false;
+    this.fullScreenImageUrl = '';
   }
 
   fetchProductDetails() {
