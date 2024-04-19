@@ -126,7 +126,10 @@
   font-size: 30px;
   bottom: 20px;
   right: 20px;
-  color: rgb(120, 238, 120);
+  background-color: orange; /* Added background color */
+  color: white; /* Changed color to white */
+  padding: 10px; /* Added padding for better visibility */
+  border-radius: 50%; /* Added border radius for circle */
   transition: opacity 0.3s ease;
   opacity: 0;
   cursor: pointer;
