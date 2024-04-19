@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { PaginatorModule } from 'primeng/paginator';
@@ -30,10 +30,11 @@ export class ProductsListComponent implements OnInit {
 
   pagedProducts: Product[] = [];
   currentPage = 1; // Use a separate property for the current page
-  rows = 4;
+  rows = 32;
   totalProducts = 0;
   categoryId!: number;
   isAuthenticated! :boolean;
+  isScrolled: boolean = false;
 
   ngOnInit() {
     // Subscribe to authentication status changes
@@ -48,6 +49,21 @@ export class ProductsListComponent implements OnInit {
       console.log("ngOnInit executed!")
     });
   }
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    // Logic to determine if the user has scrolled
+    if (window.scrollY > 100) { // You can adjust the threshold value as needed
+      this.isScrolled = true;
+      console.warn('Scrolled');
+    } else {
+      this.isScrolled = false;
+      console.warn('Not Scrolled');
+    }
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   navigateToProductDetails(productId: number) {
     this.router.navigate(['/products-details', productId]); // Note the corrected path
@@ -57,7 +73,7 @@ export class ProductsListComponent implements OnInit {
     let productsObservable: Observable<any>;
 
     if (categoryId === 0) {
-      this.rows = 8;
+      this.rows = 32;
       productsObservable = this.productService.getAllProductsPaged(this.currentPage - 1, this.rows);
     } else {
       productsObservable = this.productService.getAllProductsByCategoryId(categoryId, this.currentPage - 1, this.rows);

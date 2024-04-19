@@ -120,3 +120,20 @@
 .product-details:hover {
   transform: translateY(-10px);
 }
+
+.arrow-up {
+  position: fixed;
+  font-size: 30px;
+  bottom: 20px;
+  right: 20px;
+  color: rgb(120, 238, 120);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.arrow-up.show-arrow {
+  opacity: 1;
+}
+
+
