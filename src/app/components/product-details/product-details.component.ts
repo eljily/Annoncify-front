@@ -17,7 +17,7 @@ export class ProductDetailsComponent {
   productId!: number;
   productDetails!: Product;
   private language = "";
-  fullScreenImageUrl: string | null = null; // Initialize as nul
+  fullScreenImageUrl!: string ; // Initialize as nul
   showFullScreen: boolean = false;
   imageIndex: number = 0;
 
@@ -47,25 +47,67 @@ export class ProductDetailsComponent {
   }
 
   shareProduct() {
-    // Implement your shareProduct logic here
     const productName = this.productDetails.name;
+    const productDescription = this.productDetails.description;
     const productUrl = window.location.href;
-    const shareText = `Check out this product: ${productName}. ${productUrl}`;
-
+    const imageUrl = this.fullScreenImageUrl;
+  
+    // Update Open Graph meta tags
+    this.updateMetaTags(productName, productDescription, imageUrl, productUrl)
+      .then(() => {
+        // After updating meta tags, initiate the share action
+        this.initiateShare(productName, productDescription, productUrl);
+      })
+      .catch(error => {
+        console.error('Error updating meta tags:', error);
+        // If there's an error, proceed with sharing without updating meta tags
+        this.initiateShare(productName, productDescription, productUrl);
+      });
+  }
+  
+  updateMetaTags(title: string, description: string, imageUrl: string, url: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      // Update Open Graph meta tags
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) {
+        ogTitle.setAttribute('content', title);
+      }
+  
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) {
+        ogDescription.setAttribute('content', description);
+      }
+  
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      if (ogImage) {
+        ogImage.setAttribute('content', imageUrl);
+      }
+  
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) {
+        ogUrl.setAttribute('content', url);
+      }
+  
+      // Resolve the promise once meta tags are updated
+      resolve();
+    });
+  }
+  
+  initiateShare(title: string, description: string, url: string) {
     if (navigator.share) {
       navigator.share({
-        title: productName,
-        text: shareText,
-        url: productUrl,
+        title: title,
+        text: description,
+        url: url,
       })
       .then(() => console.log('Shared successfully'))
       .catch((error) => console.error('Error sharing:', error));
     } else {
       console.log('Web Share API not supported, fallback to other sharing methods.');
-      // Implement fallback sharing methods for platforms that do not support Web Share API
+      // Implement fallback sharing methods here
     }
   }
-
+  
   showFullScreenImage(imageUrl: string) {
     this.showFullScreen = true;
     this.fullScreenImageUrl = imageUrl;

@@ -46,7 +46,9 @@
       <div class="info-details">
         <h5>{{ translateService.translate('Depuis') }}: {{ getRelativeTime(productDetails.createDate) }}</h5>
         <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }}</h5>
-        <p class="product-description">{{ productDetails.description }}</p>
+        <p class="product-description"><strong>{{ productDetails.description }}</strong></p>
+        <!-- <p><strong>{{ translateService.translate('Category') }}:</strong> {{ productDetails.id }}</p>
+        <p><strong>{{ translateService.translate('Subcategory') }}:</strong> {{ productDetails.hit }}</p> -->
       </div>
     </div>
   </div>
