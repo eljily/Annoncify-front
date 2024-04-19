@@ -16,6 +16,7 @@
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
+      position: relative;
 
       .main-image-container {
         position: relative;
@@ -23,8 +24,18 @@
         .main-product-image {
           width: 100%;
           max-height: 400px;
-          object-fit: cover;
+          object-fit:fill;
           border-radius: 8px;
+        }
+
+        .share-icon {
+          position:absolute;
+          top: 5px;
+          right: 10px;
+          color: #ff8c00;
+          font-size: 30px;
+          cursor: pointer;
+          z-index: 4;
         }
 
         .prev, .next {
@@ -35,7 +46,7 @@
           border: none;
           cursor: pointer;
           font-size: 18px;
-          color: #333;
+          color: #f0a70a;
           padding: 10px;
           z-index: 1;
 
@@ -140,6 +151,7 @@
                 &:hover {
                   background-color: green;
                   color: #fff;
+                  cursor: pointer;
                 }
               }
             }
@@ -164,39 +176,39 @@
       }
     }
   }
-}
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9);
-}
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+  }
 
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 8px;
-}
+  .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 8px;
+  }
 
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-  cursor: pointer;
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
 
-  &:hover {
-    color: #bbb;
+    &:hover {
+      color: #bbb;
+    }
   }
 }

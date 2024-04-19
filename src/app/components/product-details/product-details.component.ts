@@ -46,6 +46,26 @@ export class ProductDetailsComponent {
     this.fullScreenImageUrl = this.productDetails.images[this.imageIndex].imageUrl;
   }
 
+  shareProduct() {
+    // Implement your shareProduct logic here
+    const productName = this.productDetails.name;
+    const productUrl = window.location.href;
+    const shareText = `Check out this product: ${productName}. ${productUrl}`;
+
+    if (navigator.share) {
+      navigator.share({
+        title: productName,
+        text: shareText,
+        url: productUrl,
+      })
+      .then(() => console.log('Shared successfully'))
+      .catch((error) => console.error('Error sharing:', error));
+    } else {
+      console.log('Web Share API not supported, fallback to other sharing methods.');
+      // Implement fallback sharing methods for platforms that do not support Web Share API
+    }
+  }
+
   showFullScreenImage(imageUrl: string) {
     this.showFullScreen = true;
     this.fullScreenImageUrl = imageUrl;
@@ -61,8 +81,11 @@ export class ProductDetailsComponent {
       (response: any) => {
         if (!this.productDetails) {
           this.productDetails = response;
+          // Set the fullScreenImageUrl to the URL of the first image
+          if (this.productDetails.images && this.productDetails.images.length > 0) {
+            this.fullScreenImageUrl = this.productDetails.images[0].imageUrl;
+          }
         }
-        console.log(response)
       },
       error => {
         console.error('Error fetching product details:', error);

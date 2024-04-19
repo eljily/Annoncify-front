@@ -4,13 +4,17 @@
     <div class="product-images">
       <!-- Main Product Image with Navigation Arrows -->
       <div class="main-image-container">
-        <img [src]="fullScreenImageUrl" class="main-product-image" />
+        <img [src]="fullScreenImageUrl ? fullScreenImageUrl : productDetails.images[0].imageUrl" class="main-product-image" />
+        <div class="share-icon" (click)="shareProduct()">
+          <!-- Add your share icon here -->
+          <i class="pi pi-share-alt"></i>
+        </div>
         <button class="prev" (click)="prevImage()">&#10094;</button>
         <button class="next" (click)="nextImage()">&#10095;</button>
       </div>
       <!-- Gallery of Small Product Images -->
       <div class="image-gallery">
-        <div class="image-thumb" *ngFor="let image of productDetails.images">
+        <div class="image-thumb" *ngFor="let image of productDetails.images; let i = index">
           <img [src]="image.imageUrl" (click)="showFullScreenImage(image.imageUrl)" />
         </div>
       </div>
