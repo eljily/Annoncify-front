@@ -54,10 +54,8 @@ export class ProductsListComponent implements OnInit {
     // Logic to determine if the user has scrolled
     if (window.scrollY > 100) { // You can adjust the threshold value as needed
       this.isScrolled = true;
-      console.warn('Scrolled');
     } else {
       this.isScrolled = false;
-      console.warn('Not Scrolled');
     }
   }
 
