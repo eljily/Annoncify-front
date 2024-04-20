@@ -18,6 +18,9 @@ import { TranslationService } from './services/translation.service';
   imports: [RouterModule, TabMenuModule, MenubarModule, CommonModule]
 })
 export class AppComponent implements OnInit {
+redirectToAddProduct() {
+this.router.navigateByUrl('/add')
+}
 
 
   isAuthenticated: boolean = false;
@@ -98,17 +101,17 @@ export class AppComponent implements OnInit {
         });
   
         // Add language selection menu item
-        this.items.push(
-          {
-            label: this.translationService.translate('Lang'),
-            icon: 'fa fa-globe',
-            items: [
-              { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
-              { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },
-              { label: this.translationService.translate('French'), icon: 'fa fa-flag', command: () => this.changeLanguage('fr') }
-            ]
-          }
-        );
+        // this.items.push(
+        //   {
+        //     label: this.translationService.translate('Lang'),
+        //     icon: 'fa fa-globe',
+        //     items: [
+        //       { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
+        //       { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },
+        //       { label: this.translationService.translate('French'), icon: 'fa fa-flag', command: () => this.changeLanguage('fr') }
+        //     ]
+        //   }
+        // );
   
         // Add authentication-related menu items based on authentication status
         if (this.isAuthenticated) {
@@ -138,14 +141,16 @@ export class AppComponent implements OnInit {
   }
   
 
-  changeLanguage(language: string) {
-    // Set the language in the translation service
-    this.translationService.setLanguage(language);
-    // Store the language in local storage
-    localStorage.setItem('language', language);
-    this.loadCategories();
+  changeLanguage(event: any) {
+    const selectedLanguage = event.target?.value; // Safely access value property
+    if (selectedLanguage) {
+      // Set the language in the translation service
+      this.translationService.setLanguage(selectedLanguage);
+      // Store the language in local storage
+      localStorage.setItem('language', selectedLanguage);
+      this.loadCategories();
+    }
   }
-  
   
   logout() {
     this.authService.logout().subscribe(() => {

@@ -25,7 +25,7 @@
         .main-product-image {
           width: 100%;
           max-height: 400px;
-          object-fit: cover;
+          object-fit:fill;
           border-radius: 8px;
         }
 
