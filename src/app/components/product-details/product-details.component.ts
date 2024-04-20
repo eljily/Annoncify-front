@@ -64,6 +64,10 @@ export class ProductDetailsComponent {
         this.initiateShare(productName, productDescription, productUrl);
       });
   }
+
+  formatPrice(price: number): string {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
   
   updateMetaTags(title: string, description: string, imageUrl: string, url: string): Promise<void> {
     return new Promise((resolve, reject) => {

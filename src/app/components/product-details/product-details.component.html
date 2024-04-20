@@ -1,4 +1,4 @@
-<div class="product-details" *ngIf="productDetails">
+<div class="container" *ngIf="productDetails">
   <div class="details-container">
     <!-- Product Images -->
     <div class="product-images">
@@ -23,7 +23,7 @@
     <!-- Product Info -->
     <div class="product-info">
       <h1>{{ productDetails.name }}</h1>
-      <div class="price"><strong>{{ productDetails.price }} MRU</strong></div>
+      <div class="price"><strong>{{ this.formatPrice(productDetails.price) }} MRU</strong></div>
       <div class="vendor-details-card">
         <h3>{{ translateService.translate('Vendor Details') }}</h3>
         <div class="vendor-details">
@@ -45,17 +45,19 @@
       </div>
       <div class="info-details">
         <h5>{{ translateService.translate('Depuis') }} {{ getRelativeTime(productDetails.createDate) }}</h5>
-        <h5>{{ translateService.translate('Vue') }}: {{ productDetails.hit }}</h5>
-        <p class="product-description"><strong>{{ productDetails.description }}</strong></p>
+        <h5>{{ translateService.translate('Vue') }} {{ productDetails.hit }}</h5>
+
         <!-- <p><strong>{{ translateService.translate('Category') }}:</strong> {{ productDetails.id }}</p>
         <p><strong>{{ translateService.translate('Subcategory') }}:</strong> {{ productDetails.hit }}</p> -->
       </div>
     </div>
   </div>
-
   <!-- Full Screen Modal -->
   <div class="modal" *ngIf="showFullScreen">
     <span class="close" (click)="closeFullScreenImage()">&times;</span>
     <img [src]="fullScreenImageUrl" class="modal-content" />
   </div>
+</div>
+<div class="container">
+  <p class="product-description"><strong>{{this.translateService.translate("Description")}}<br>{{ productDetails.description }}</strong></p>
 </div>
