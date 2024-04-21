@@ -12,8 +12,20 @@
 <!-- Footer -->
 <footer class="footer" >
   <div class="container">
-    <span>&copy;{{ translationService.translate('eljily sidibrahim') }}</span>
+    <span>&copy;{{ translationService.translate('') }}2024</span>
     
-    <a (click)="navigateToAboutUs()">  {{ translationService.translate('About Us') }}  </a>
+    <!-- <a (click)="navigateToAboutUs()">  {{ translationService.translate('About Us') }}  </a> -->
+    <div class="about-us-container">
+      <h1>{{ translationService.translate('À propos de nous') }}</h1>
+      <p>{{ translationService.translate('Bienvenue sur Annoncify, la plateforme où tout le monde peut devenir vendeur et annoncer ses produits. Chez Annoncify, nous nous efforçons de fournir une expérience fluide tant pour les vendeurs que pour les acheteurs.') }}</p>
+      
+      <h2>{{ translationService.translate('Notre mission') }}</h2>
+      <p>{{ translationService.translate('Notre mission est de connecter les vendeurs avec les acheteurs potentiels de manière conviviale et efficace. Nous visons à rendre le processus de publicité et de recherche de produits facile et pratique pour tout le monde.') }}</p>
+      
+      <h2>{{ translationService.translate('Contactez-nous') }}</h2>
+      <p>{{ translationService.translate("Si vous avez des questions, des suggestions ou des commentaires, n'hésitez pas à nous contacter. Nous sommes là pour vous aider !") }}</p>
+      <p [innerHTML]="translationService.translate('Téléphone : +222 36537673  &lt;a href=&quot;/contact-us&quot;&gt;ou cliquer ici.&lt;/a&gt;')"></p>
+  
+  </div>
   </div>
 </footer>

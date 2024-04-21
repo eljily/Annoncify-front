@@ -101,17 +101,17 @@ this.router.navigateByUrl('/add')
         });
   
         // Add language selection menu item
-        // this.items.push(
-        //   {
-        //     label: this.translationService.translate('Lang'),
-        //     icon: 'fa fa-globe',
-        //     items: [
-        //       { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
-        //       { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },
-        //       { label: this.translationService.translate('French'), icon: 'fa fa-flag', command: () => this.changeLanguage('fr') }
-        //     ]
-        //   }
-        // );
+        this.items.push(
+          {
+            label: this.translationService.translate('Lang'),
+            icon: 'fa fa-globe',
+            items: [
+              { label: this.translationService.translate('Arabic'), icon: 'fa fa-flag', command: () => this.changeLanguage('ar') },
+              { label: this.translationService.translate('English'), icon: 'fa fa-flag', command: () => this.changeLanguage('en') },
+              { label: this.translationService.translate('French'), icon: 'fa fa-flag', command: () => this.changeLanguage('fr') }
+            ]
+          }
+        );
   
         // Add authentication-related menu items based on authentication status
         if (this.isAuthenticated) {
@@ -142,7 +142,7 @@ this.router.navigateByUrl('/add')
   
 
   changeLanguage(event: any) {
-    const selectedLanguage = event.target?.value; // Safely access value property
+    const selectedLanguage = event; // Safely access value property
     if (selectedLanguage) {
       // Set the language in the translation service
       this.translationService.setLanguage(selectedLanguage);
