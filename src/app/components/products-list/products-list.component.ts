@@ -6,7 +6,7 @@ import { Product } from '../../model/Product';
 import { Image } from '../../model/Image';
 import { ProductsService } from '../../services/products.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgStyle } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,7 +15,7 @@ import { TranslationService } from '../../services/translation.service';
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [ButtonModule, DataViewModule, PaginatorModule, RouterModule, NgFor],
+  imports: [ButtonModule, DataViewModule, PaginatorModule, RouterModule, NgFor,CommonModule,NgStyle],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })

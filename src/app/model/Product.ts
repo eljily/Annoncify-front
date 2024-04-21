@@ -12,4 +12,7 @@ export interface Product {
     hit:number;
     images: Image[];
     vendorDetails : VendorDetails;
+    category : string;
+    adress : string;
+    subadress :string;
   }
