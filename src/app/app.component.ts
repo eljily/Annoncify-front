@@ -112,6 +112,11 @@ this.router.navigateByUrl('/add')
             ]
           }
         );
+
+        this.items.push(
+          {label:this.translationService.translate("Publier Votre Annonce"),
+          icon:'fa fa-plus', routerLink: ['/add'] 
+      })
   
         // Add authentication-related menu items based on authentication status
         if (this.isAuthenticated) {

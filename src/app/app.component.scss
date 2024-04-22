@@ -3,13 +3,6 @@
   color: #fff; /* Customize as needed */
 }
 
-.footer {
-  margin: 0;
-  background-color: #333; /* Customize as needed */
-  color: #fff; /* Customize as needed */
-  text-align: center;
-  padding: 10px 0;
-}
 .container {
   max-width: 1200px; /* Adjust as needed */
   margin: 0 auto; /* Center the content horizontally */
@@ -17,52 +10,45 @@
 }
 
 /* Additional styles for footer */
+/* app.component.scss */
+:host ::ng-deep .custom-menubar {
+  background-color: #f5a104;
+  color : #fcf9f9 !important; /* Navbar background color */
+}
 .footer {
   margin-top: 20px;
-  margin-bottom: 0;
-  background-color:#fb9339; /* Dark background color */
+  background-color: #f5a104; /* Dark background color */
   color: #fff; /* Text color */
-  text-align: center; /* Center align text */
-  padding: 10px; /* Add padding */
-  
+  text-align: left; /* Left-align text */
+  padding: 40px; /* Add padding */
 }
+
+.about-us-container {
+  max-width: 800px; /* Limit width for better readability */
+  margin: 0 auto; /* Center the content horizontally */
+}
+
+.about-us-container h1 {
+  font-size: 24px; /* Larger font size for headings */
+  margin-bottom: 20px; /* Add some space below headings */
+}
+
+.about-us-container h2 {
+  font-size: 20px; /* Larger font size for subheadings */
+  margin-top: 30px; /* Add some space above subheadings */
+}
+
+.about-us-container p {
+  line-height: 1.6; /* Increase line height for better readability */
+  margin-bottom: 20px; /* Add some space below paragraphs */
+}
+
 .footer a {
-  color:rgb(9, 255, 9); /* Blue color, you can change it */
+  color: #fff; /* Text color for links */
   text-decoration: none; /* Remove underline */
   margin-left: 10px; /* Add some spacing */
 }
 
-/* app.component.scss */
-:host ::ng-deep .custom-menubar {
-  background-color: #f38a2e;
-  color : #fcf9f9 !important; /* Navbar background color */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-link {
-  color: #10e3fa !important; /* Navbar link color */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-link:hover {
-  background-color: #02ff06 !important; /* Navbar link hover background color */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-link:hover .ui-menuitem-text {
-  color: #fcfcfc !important; /* Navbar link hover text color */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-root {
-  border: none !important; /* Remove border for main menu items */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child {
-  background-color: #10e3fa !important; /* Submenu background color */
-  border: none !important; /* Remove border for submenus */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link {
-  color: #000000 !important; /* Submenu link color */
-}
-
-:host ::ng-deep .custom-menubar .ui-menuitem-root .ui-menu-child .ui-menuitem-link:hover {
-  background-color: #fb9339 !important; /* Submenu link hover background color */
+.footer a:hover {
+  text-decoration: underline; /* Underline on hover */
 }

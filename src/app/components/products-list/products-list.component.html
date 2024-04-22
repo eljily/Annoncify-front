@@ -1,7 +1,6 @@
 <!-- <div class="ad-container">
   <div class="ad-slideshow">
     <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
-    <img src="https://rimnow.mr/images/pub_.jpg" alt="Ad 2" />
   </div>
 </div> -->
 <div class="arrow-up" [style.opacity]="isScrolled ? '1' : '0'" [style.z-index]="isScrolled ? '999' : '-1'">
@@ -9,9 +8,9 @@
 </div>
 
 <div class="card">
-  <button class="profile-button" (click)="redirectToAddProduct()">
+  <!-- <button class="profile-button" (click)="redirectToAddProduct()">
     <i class="pi pi-plus"></i> {{ this.translationService.translate('Publier Votre Annonce') }}
-  </button>
+  </button> -->
   <div class="product-grid">
     <div class="card-item" *ngFor="let item of pagedProducts" (click)="navigateToProductDetails(item.id)">
       <div class="product-details">
