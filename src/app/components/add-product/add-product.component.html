@@ -27,17 +27,17 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="category">{{ translationService.translate('Categorie') }}</label>
-        <select id="category" class="form-control" [(ngModel)]="product.category" name="category" required (ngModelChange)="onCategoryChange(product.category)">
+        <label for="region">Wilaya</label>
+        <select id="region" class="form-control" [(ngModel)]="product.region" name="region" required (ngModelChange)="onRegionChange(product.region)">
           <option value="" disabled selected>{{ translationService.translate('Select category') }}</option>
-          <option *ngFor="let category of categories" [value]="category.name">{{ this.translationService.translate(category.name) }}</option>
+          <option *ngFor="let region of regions" [value]="region.name">{{ this.translationService.translate(region.name) }}{{region.name}}</option>
         </select>
       </div>    
       <div class="form-group">
-        <label for="subcategory">{{ translationService.translate('Sous Categorie') }}</label>
-        <select id="subcategory" class="form-control" [(ngModel)]="product.subcategory" name="subcategory" required>
+        <label for="subregion">Moukataa</label>
+        <select id="subregion" class="form-control" [(ngModel)]="product.subregion" name="subregion" required>
           <option value="" disabled selected>{{ translationService.translate('Select subcategory') }}</option>
-          <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ this.translationService.translate(subcategory.name) }}</option>
+          <option *ngFor="let subregion of subregions" [value]="subregion.id">{{ this.translationService.translate(subregion.name) }}{{subregion.name}}</option>
         </select>
       </div>
       <div class="form-group">

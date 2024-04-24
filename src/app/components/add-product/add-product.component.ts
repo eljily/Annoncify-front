@@ -11,6 +11,9 @@ import { SubCategory } from '../../model/SubCategory';
 import { CommonModule } from '@angular/common';
 import { TranslationService } from '../../services/translation.service';
 import { AppStateService } from '../../services/app-state.service';
+import { Region } from '../../model/Region';
+import { SubRegion } from '../../model/SubRegion';
+import { RegionService } from '../../services/region.service';
 
 @Component({
   selector: 'app-add-product',
@@ -23,7 +26,7 @@ import { AppStateService } from '../../services/app-state.service';
 export class AddProductComponent implements OnInit {
 
   constructor(private productService: ProductsService,
-    private categoryService: CategoryService,
+    private regionService: RegionService,
     private router: Router,
     private messageService: MessageService,
     public translationService: TranslationService,
@@ -32,26 +35,25 @@ export class AddProductComponent implements OnInit {
   product: any = {};
   images: any[] = [];
   msgs: any[] = [];
-  categories: Category[] = [];
-  subcategories: SubCategory[] = [];
+  regions: Region[] = [];
+  subregions: SubRegion[] = [];
 
   ngOnInit() {
-    console.warn(this.product)
-    this.categoryService.getAllCategories().subscribe(
+    this.regionService.getAllRegions().subscribe(
       (response: any) => {
-        console.log(response)
-        this.categories = response;
+        this.regions = response.data;
+        console.warn(this.regions)
       },
       error => {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching regions:', error);
       }
     );
   }
 
   onSubmit() {
-    console.warn("submitting .....")
-    if (!this.product.name || !this.product.description || !this.product.price || !this.product.category || !this.product.subcategory) {
+    if (!this.product.name || !this.product.description || !this.product.price || !this.product.region || !this.product.subregion) {
       const errMssg = this.translationService.translate("All fields are required")
+      console.warn(this.product)
       this.messageService.add({ severity: 'error', summary: '', detail: errMssg, life: 2500 });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -60,12 +62,13 @@ export class AddProductComponent implements OnInit {
       formData.append('name', this.product.name);
       formData.append('description', this.product.description);
       formData.append('price', this.product.price);
-      formData.append('category', this.product.category);
-      formData.append('subCategoryId', this.product.subcategory); // Append selected subcategory
+      formData.append('region', this.product.region);
+      formData.append('subRegionId', this.product.subregion); // Append selected subregion
+      
       for (let i = 0; i < this.images.length; i++) {
         formData.append('images', this.images[i]);
       }
-      console.log(this.product)
+
       this.productService.addProduct(formData).subscribe(
         response => {
           console.log('Product added successfully', response);
@@ -84,13 +87,12 @@ export class AddProductComponent implements OnInit {
   }
   
   clearForm() {
-    console.log(this.product)
     this.product = {};
     this.images = [];
     this.router.navigateByUrl("/products/0")
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const addedMessage = this.translationService.translate("Annonce published successfully");
-          this.messageService.add({ severity: 'success', summary: '', detail: addedMessage, life: 7000 });
+    this.messageService.add({ severity: 'success', summary: '', detail: addedMessage, life: 7000 });
   }
 
   onFileSelect(event: any) {
@@ -100,16 +102,12 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  onCategoryChange(categoryName: string) {
-    console.log('Selected category:', categoryName);
-    const selectedCategory = this.categories.find(category => category.name === categoryName);
-    console.log('Selected category object:', selectedCategory);
-    if (selectedCategory && selectedCategory.subCategories) {
-      this.subcategories = selectedCategory.subCategories;
-      console.log('Subcategories:', this.subcategories);
+  onRegionChange(regionName: string) {
+    const selectedRegion = this.regions.find(region => region.name === regionName);
+    if (selectedRegion && selectedRegion.subRegions) {
+      this.subregions = selectedRegion.subRegions;
     } else {
-      this.subcategories = [];
-      console.log('No subcategories found for the selected category.');
+      this.subregions = [];
     }
   }
 }

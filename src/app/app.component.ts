@@ -89,11 +89,11 @@ this.router.navigateByUrl('/add')
             routerLink = ['/products', 0]; // For "Home" category, set routerLink to navigate to ID 0
           }
           const subMenuItems: MenuItem[] = category.subCategories.map((subCategory: SubCategory) => ({
-            label: this.translationService.translate(subCategory.name), // Translate subcategory name
+            label: this.translationService.translate(subCategory.name)|| subCategory.name.trim(), // Translate subcategory name
             routerLink: ['/products', subCategory.id]
           }));
           return {
-            label: this.translationService.translate(category.name && category.name.trim() ? category.name : ''), // Translate category name
+            label: this.translationService.translate(category.name && category.name.trim() ? category.name : '')|| category.name.trim(), // Translate category name
             icon: this.categoryIconMappings[category.name],
             items: subMenuItems,
             routerLink: routerLink // Assign routerLink to the menu item
