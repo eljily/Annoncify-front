@@ -13,6 +13,7 @@ export interface Product {
     images: Image[];
     vendorDetails : VendorDetails;
     category : string;
+    subCategory:string;
     region : string;
-    subregion :string;
+    subRegion :string;
   }
