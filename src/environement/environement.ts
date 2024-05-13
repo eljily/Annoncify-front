@@ -1,5 +1,5 @@
 export const environment = {
-    apiUrl: 'https://annoncify.onrender.com/api',
+    apiUrl: 'http://localhost:8081/api',
     production: false,
   };
   
