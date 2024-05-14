@@ -44,6 +44,7 @@
         </div>
       </div>
       <div class="info-details">
+        <i class="pi pi-map-marker localisation">{{productDetails.region}},{{productDetails.subRegion}}</i>
         <h5><strong>{{translateService.translate(productDetails.subCategory)}}</strong></h5>
         <h5><strong>{{ translateService.translate('Depuis') }} {{ getRelativeTime(productDetails.createDate) }}</strong></h5>
         <h5>{{ translateService.translate('Vue') }} {{ productDetails.hit }}</h5>

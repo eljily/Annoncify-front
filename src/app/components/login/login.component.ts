@@ -58,6 +58,7 @@ export class LoginComponent {
         localStorage.setItem('token', response.jwt);
         localStorage.setItem('userId', response.userId);
         this.appState.userId = response.userId;
+        this.appState.isAuthenticated = true;
         this.authService.setAuthenticated(true);
         // Optionally navigate to another page
         this.router.navigate(['/add']);

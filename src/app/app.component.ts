@@ -9,6 +9,7 @@ import { SubCategory } from './model/SubCategory';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
 import { TranslationService } from './services/translation.service';
+import { AppStateService } from './services/app-state.service';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,6 @@ import { TranslationService } from './services/translation.service';
   imports: [RouterModule, TabMenuModule, MenubarModule, CommonModule]
 })
 export class AppComponent implements OnInit {
-redirectToAddProduct() {
-this.router.navigateByUrl('/add')
-}
-
 
   isAuthenticated: boolean = false;
   title = 'annoncify_front';
@@ -49,7 +46,8 @@ this.router.navigateByUrl('/add')
   constructor(private categoryService: CategoryService,
      private router: Router,
      private authService:AuthService,
-     public translationService : TranslationService) { }
+     public translationService : TranslationService,
+    private appState : AppStateService) { }
 
   ngOnInit() {
     this.translationService.loadTranslations();
@@ -115,7 +113,7 @@ this.router.navigateByUrl('/add')
 
         this.items.push(
           {label:this.translationService.translate("Publier Votre Annonce"),
-          icon:'fa fa-plus', routerLink: ['/add'] 
+          icon:'fa fa-plus', routerLink: this.appState.isAuthenticated?['/add']:['/login'] 
       })
   
         // Add authentication-related menu items based on authentication status

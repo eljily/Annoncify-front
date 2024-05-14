@@ -8,6 +8,7 @@ import { TranslationService } from './translation.service';
 export class AppStateService {
     userCurrentLanguage: string = '';
     userId!: number;
+    isAuthenticated! : boolean ;
     isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false); // Add isLoading property
 
     constructor(private translationService: TranslationService) {
