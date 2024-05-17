@@ -17,7 +17,7 @@ export class ProductsService {
     return this.http.get(`${this.api}/products`);
   }
   getProductsByCategoryId(categoryId: number): Observable<any> {
-    return this.http.get(`${this.api}/products/productsByCategoryId/${categoryId}`);
+    return this.http.get(`${this.api}/products/productsBySubCategoryId/${categoryId}`);
   }
 
   getAllProductsPaged(page: number = 0, size: number = 11): Observable<any> {
@@ -25,7 +25,7 @@ export class ProductsService {
   }
 
   getAllProductsByCategoryId(categoryId: number, page: number = 0, size: number = 10): Observable<any> {
-    return this.http.get(`${this.api}/products/productsByCategoryId/${categoryId}?page=${page}&size=${size}`);
+    return this.http.get(`${this.api}/products/productsBySubCategoryId/${categoryId}?page=${page}&size=${size}`);
   }
 
   getProductDetails(productId: number): Observable<any> {

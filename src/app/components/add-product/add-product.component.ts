@@ -100,6 +100,7 @@ export class AddProductComponent implements OnInit {
     for (let i = 0; i < files.length; i++) {
       this.images.push(files[i]);
     }
+    console.warn('Fichiers sélectionnés:', this.images);
   }
 
   onRegionChange(regionName: string) {
