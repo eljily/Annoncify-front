@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environement/environement';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  private api = '';
 
-  private api = "";
+  constructor(private http: HttpClient) {
+    this.api = environment.apiUrl;
+  }
 
-  constructor(private http:HttpClient) { this.api = environment.apiUrl}
-
-  public getAllCategories():Observable<any>{
+  public getAllCategories(): Observable<any> {
     return this.http.get(`${this.api}/categories`);
   }
 }
